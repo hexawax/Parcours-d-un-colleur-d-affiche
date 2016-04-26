@@ -132,13 +132,11 @@ for(int i =0; i<n ; i++)//verification des valeurs des points
     GRAVE : La methode du string ne fonctionne pas pour une adresse de tableau > 9 car 10 est 1 & 0 et il comprednra le point 1 et le point 0 il faudra ajouter un separateur
     Le voyageur ne peut pas passer deux fois par le meme point(A-@B-@A-@B) pour eviter les boucles infini A MODIFIER  car ne marche pas pour un plan en 3D
 */
-string S [n];
+string [n] S;
 S[0]=to_string(0);//on part du point O a chaque fois VOIR LA NOTICE grave
 
-for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i 
+for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i
 {S[0]=S[0]+to_string(i);} // RESOLUS archive IcI je cherche un moyen de faire toutes les possibilité de chemin entre les mpoint mais il faut les enregistrer quelque part pour l'instant je bloque
-string test("test");
-cout<<test;
 cout<<S[0];
 //combinaison(S,0,n);
 
