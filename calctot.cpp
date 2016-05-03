@@ -16,7 +16,12 @@ while{m>n};
 	}
 cout<<"la distance totale est de: "<<dist<<endl;
 
+
+
 }
+
+
+
 
 
 
