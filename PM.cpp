@@ -34,36 +34,13 @@
 #include <cstdlib> //rand
 #include <ctime> //intialisatn de rand
 #include <string>
+#include <algorithm>    // std::next_permutation, std::sort
 using namespace std;
 
-double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
+double proba0_1()
 {
-  return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
+  return (double)rand()/RAND_MAX; //valur aleatoire du nombre entre 0 et 100
 }
-
-void Pcirculaire (string tab[],int g, int tailletab){
-  string save =tab[g];
-  for (int i=g; i<tailletab-1; i++)
-  {
-    tab[i]=tab[i+1];
-  }
-  tab[tailletab-1]=save;
-}
-
-void combinaison (string nom[],int nec,int tailletab)//nec premier nombre du tableau
-{
-if ((tailletab-nec)<=1){
-
-}
-  else {
-    for (int i =0 ;i<tailletab-nec;i++)
-    {
-      Pcirculaire(nom, nec, tailletab);
-      combinaison(nom, nec+1,tailletab);
-    }
-  }
-}
-
 
 double bazinga() //fct de point aleatoire
 {int signe =rand()%(1); //avoir un signe aleatoirement
@@ -77,6 +54,32 @@ double distance (double x1, double y1, double x2, double y2)//distance entre 2 p
 {
   return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
 }
+
+
+int factorielle(int n)//fct factoriel pour calculer le nb de possibilité
+{
+  return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
+}
+
+
+void Pcirculaire (string tab[],int neff, int tailletab, int position){
+  string save =tab[neff];
+  for (int i=neff; i<tailletab-1; i++)
+  {
+    tab[i]=tab[i+1];
+  }
+  tab[tailletab-1]=save;
+}
+
+
+void combinaison (string nom[],int neff,int tailletab,int position)//nec premier nombre du tableau, celui qui debute la permutaion
+{
+string read = nom[neff];
+position=position+1;
+
+
+}
+
 void intro (){
   cout<<"___    ____  ______   ____    ____  ___       _______  _______  __    __  .______    "<<endl;
   cout<<"\\   \\  /   / /  __  \\  \\   \\  /   / /   \\     /  _____||   ____||  |  |  | |   _  \\     "<<endl;
@@ -124,33 +127,63 @@ for(int i =0; i<n ; i++)//verification des valeurs des points
 }
 
 ////////////////////////////////CHOIX DU CHEMIN////////////////////////////////////
-/*
-                         _____
-                        / /\ \
-                      / /|_|\ \
-                    /_/  (_) \_\
-    GRAVE : La methode du string ne fonctionne pas pour une adresse de tableau > 9 car 10 est 1 & 0 et il comprednra le point 1 et le point 0 il faudra ajouter un separateur
-    Le voyageur ne peut pas passer deux fois par le meme point(A-@B-@A-@B) pour eviter les boucles infini A MODIFIER  car ne marche pas pour un plan en 3D
-*/
 
-string S [n];
+
+
+
+
+
+
+
+
+int S[n];
+for(int i=0; i<n; i++){
+
+S[i]=i;
+
+}
+std::sort (S,S+n);
+ double Trajet [factorielle(n)][n]
+  std::cout << "The n! possible permutations with n elements:\n";
+int i=0;
+  do {
+		for (int j=0; j<n; j++)
+			{
+				Trajet[i][j]=S[j];
+		}
+	i++;
+
+  } while ( std::next_permutation(myints,myints+n) );
+
+cout<<"cout de la mort";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+string S [factorielle(n)];
 S[0]=to_string(0);//on part du point O a chaque fois VOIR LA NOTICE grave
 
-for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i
+for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i 
 {S[0]=S[0]+to_string(i);} // RESOLUS archive IcI je cherche un moyen de faire toutes les possibilité de chemin entre les mpoint mais il faut les enregistrer quelque part pour l'instant je bloque
-cout<<S[0];
-//combinaison(S,0,n);
-
-
-
-
-
-
-
-
-
-
-
+cout<<S[n];
+combinaison(S,0,n,0);
 
 
 
