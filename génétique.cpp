@@ -3,7 +3,7 @@
 #include "PM.h"
 using namespace std;
 
-
+/*
 void init_nom(vecteur &genet) 
 {
 	for(int j=0;j<n;j++)
@@ -31,5 +31,5 @@ void calcul_chemin (int n,string nom){
 bool tri (structure x,structure y){
 return (x.genet<y.genet)//retourne vrai si le premier chemin est plus court que le deuxième
 }
-
+*/
 
