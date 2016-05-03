@@ -132,6 +132,7 @@ for(int i =0; i<n ; i++)//verification des valeurs des points
     GRAVE : La methode du string ne fonctionne pas pour une adresse de tableau > 9 car 10 est 1 & 0 et il comprednra le point 1 et le point 0 il faudra ajouter un separateur
     Le voyageur ne peut pas passer deux fois par le meme point(A-@B-@A-@B) pour eviter les boucles infini A MODIFIER  car ne marche pas pour un plan en 3D
 */
+
 string S [n];
 S[0]=to_string(0);//on part du point O a chaque fois VOIR LA NOTICE grave
 
