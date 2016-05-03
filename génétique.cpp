@@ -33,3 +33,62 @@ return (x.genet<y.genet)//retourne vrai si le premier chemin est plus court que 
 }
 */
 
+class genet () {
+public:
+	int genet;
+	int ville1;
+	double dist;
+
+}
+
+int genet::ville1 (int a){
+
+	int D=
+	int i=0;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
