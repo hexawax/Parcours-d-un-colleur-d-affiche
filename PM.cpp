@@ -11,28 +11,6 @@ double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
   return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
 }
 
-void Pcirculaire (string tab[],int g, int tailletab){
-  string save =tab[g];
-  for (int i=g; i<tailletab-1; i++)
-  {
-    tab[i]=tab[i+1];
-  }
-  tab[tailletab-1]=save;
-}
-
-void combinaison (string nom[],int nec,int tailletab)//nec premier nombre du tableau
-{
-if ((tailletab-nec)<=1){
-
-}
-  else {
-    for (int i =0 ;i<tailletab-nec;i++)
-    {
-      Pcirculaire(nom, nec, tailletab);
-      combinaison(nom, nec+1,tailletab);
-    }
-  }
-}
 
 
 double bazinga() //fct de point aleatoire
@@ -43,10 +21,6 @@ double bazinga() //fct de point aleatoire
 else return -rand()%(100);//valeur aleatoire du nombre
 }
 
-double distance (double x1, double y1, double x2, double y2)//distance entre 2 points @@@@ A1B2
-{
-  return sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-}
 void intro (){
   cout<<"___    ____  ______   ____    ____  ___       _______  _______  __    __  .______    "<<endl;
   cout<<"\\   \\  /   / /  __  \\  \\   \\  /   / /   \\     /  _____||   ____||  |  |  | |   _  \\     "<<endl;
@@ -102,16 +76,6 @@ for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i
 {S[0]=S[0]+to_string(i);} // RESOLUS archive IcI je cherche un moyen de faire toutes les possibilité de chemin entre les mpoint mais il faut les enregistrer quelque part pour l'instant je bloque
 cout<<S[0];
 //combinaison(S,0,n);
-
-
-
-
-
-
-
-
-
-
 
 
 
