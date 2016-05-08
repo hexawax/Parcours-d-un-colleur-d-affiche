@@ -1,34 +1,4 @@
-/*___    ____  ______   ____    ____  ___       _______  _______  __    __  .______
-\   \  /   / /  __  \  \   \  /   / /   \     /  _____||   ____||  |  |  | |   _  \
- \   \/   / |  |  |  |  \   \/   / /  ^  \   |  |  __  |  |__   |  |  |  | |  |_)  |
-  \      /  |  |  |  |   \_    _/ /  /_\  \  |  | |_ | |   __|  |  |  |  | |      /
-   \    /   |  `--'  |     |  |  /  _____  \ |  |__| | |  |____ |  `--'  | |  |\  \----.
-    \__/     \______/      |__| /__/     \__\ \______| |_______| \______/  | _| `._____|
 
-                               _______   _______
-                              |       \ |   ____|
-                              |  .--.  ||  |__
-                              |  |  |  ||   __|
-                              |  '--'  ||  |____
-                              |_______/ |_______|
-
-  ______   ______   .___  ___. .___  ___.  _______ .______        ______  _______
- /      | /  __  \  |   \/   | |   \/   | |   ____||   _  \      /      ||   ____|
-|  ,----'|  |  |  | |  \  /  | |  \  /  | |  |__   |  |_)  |    |  ,----'|  |__
-|  |     |  |  |  | |  |\/|  | |  |\/|  | |   __|  |      /     |  |     |   __|
-|  `----.|  `--'  | |  |  |  | |  |  |  | |  |____ |  |\  \----.|  `----.|  |____
- \______| \______/  |__|  |__| |__|  |__| |_______|| _| `._____| \______||_______|
-
-
-                                           )
-                              (   (   (  /(
-                              )\  )\  )  ())
-                              ((_)((_)(  (_)\
-                                \ \  / /  / |
-                                 \ V /    | |
-                                  \_/     |_|
- changer la version lors des modification !
-*/
 #include <iostream>
 #include <cmath> //sqrt
 #include <cstdlib> //rand
@@ -124,16 +94,8 @@ for(int i =0; i<n ; i++)//verification des valeurs des points
 }
 
 ////////////////////////////////CHOIX DU CHEMIN////////////////////////////////////
-/*
-                         _____
-                        / /\ \
-                      / /|_|\ \
-                    /_/  (_) \_\
-    GRAVE : La methode du string ne fonctionne pas pour une adresse de tableau > 9 car 10 est 1 & 0 et il comprednra le point 1 et le point 0 il faudra ajouter un separateur
-    Le voyageur ne peut pas passer deux fois par le meme point(A-@B-@A-@B) pour eviter les boucles infini A MODIFIER  car ne marche pas pour un plan en 3D
-*/
 
-string S [n];
+    string [n] S ;
 S[0]=to_string(0);//on part du point O a chaque fois VOIR LA NOTICE grave
 
 for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i
