@@ -1,0 +1,58 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf460
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red65\green182\blue69;\red120\green109\blue196;\red219\green44\blue56;
+\red178\green24\blue137;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf1 \CocoaLigature0 \
+\cf2 //////////////////////////////\cf1 \
+\cf2 // Permute 5 \'e9l\'e9ments cons\'e9cutifs dans ordre\cf1 \
+\cf2 //////////////////////////////\cf1 \
+function o=permuter(ordre)\
+v=grand(\cf3 1\cf1 ,\cf3 1\cf1 ,\cf4 "uin"\cf1 ,\cf3 1\cf1 ,d)\
+o=ordre;\
+\cf5 if\cf1   v>\cf3 1\cf1  then\
+o=o([[v:d],[\cf3 1\cf1 :v-\cf3 1\cf1 ]])\
+end\
+o5=grand(\cf3 1\cf1 ,\cf4 "prm"\cf1 ,(\cf3 1\cf1 :\cf3 5\cf1 )\cf3 ');\cf1 \
+         o([\cf3 1\cf1 :\cf3 5\cf1 ])=o(o5\cf3 ')\cf1 \
+                    \
+                    \
+                    \cf2 ///////////////////////////////\cf1 \
+                    \cf2 // Calcule la distance totale\cf1 \
+                    \cf2 // associ\'e9e \'e0 la permutation ordre\cf1 \
+                    \cf2 //////////////////////////////\cf1 \
+                    function e=f(ordre)\
+                    e=dist(ordre(\cf3 1\cf1 ),ordre(d))\
+                    \cf5 for\cf1  i=\cf3 1\cf1 :d-\cf3 1\cf1 \
+                    e=e+dist(ordre(i),ordre(i+\cf3 1\cf1 ))\
+                    end\
+                    \
+                    \
+                    \cf2 ////////////////////////////////\cf1 \
+                    \cf2 // Tire d points i.i.d. de loi uniforme\cf1 \
+                    \cf2 //   dans le carr\'e9 unit\'e9\cf1 \
+                    \cf2 // Calcule la matrice des distances inter-villes\cf1 \
+                    \cf2 ////////////////////////////////\cf1 \
+                    function [v,dist]=initialise(d)\
+                    v=rand(d,\cf3 2\cf1 )\
+                    dist=(v(:,\cf3 1\cf1 )*ones(\cf3 1\cf1 ,d)-ones(d,\cf3 1\cf1 )*v(:,\cf3 1\cf1 )\cf3 ').^2;\cf1 \
+                          dist=dist+(v(:,\cf3 2\cf1 )*ones(\cf3 1\cf1 ,d)-ones(d,\cf3 1\cf1 )*v(:,\cf3 2\cf1 )\cf3 ').^2;\cf1 \
+                                     dist=sqrt(dist)\
+                                     \
+                                     \
+                                     \cf2 ////////////////////////////\cf1 \
+                                     \cf2 // Relie les points de villes dans l'ordre\cf1 \
+                                     \cf2 ////////////////////////////\cf1 \
+                                     function traceparcours(villes)\
+                                     v=[villes;villes(\cf3 1\cf1 ,:)]\
+                                     xbasc;square(\cf3 0\cf1 ,\cf3 0\cf1 ,\cf3 1\cf1 ,\cf3 1\cf1 );\
+                                     plotframe([\cf3 0\cf1 ,\cf3 0\cf1 ,\cf3 1\cf1 ,\cf3 1\cf1 ],[\cf3 0\cf1 ,\cf3 1\cf1 ,\cf3 0\cf1 ,\cf3 1\cf1 ],[%f,%f]);\
+                                     plot2d(v(:,\cf3 1\cf1 ),v(:,\cf3 2\cf1 ),\cf3 1\cf1 ,\cf4 "000"\cf1 );\
+                                     xset(\cf4 "mark"\cf1 ,-\cf3 9\cf1 ,\cf3 4\cf1 );\
+                                     plot2d(villes(:,\cf3 1\cf1 ),villes(:,\cf3 2\cf1 ),-\cf3 9\cf1 ,\cf4 "000"\cf1 )\
+                                     \
+\
+}
