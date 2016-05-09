@@ -42,10 +42,10 @@ double unsurT(double T) //fonction T(n)=1/K or k est parametres de la fonction
     return 1/T;
 }
 
-double distance (const int* P[][2],int i, int j)//distance entre 2 point d'un tableu double de points i = P1 & j =P2
+double distance (const int P[][2],int i, int j)//distance entre 2 point d'un tableu double de points i = P1 & j =P2
 {
-    return sqrt( (P[j][1]-P[i][1]) * (P[j][1]-P[i][1])
-                + (P[j][2]-P[i][2]) * (P[j][2]-P[i][2]) );
+    return sqrt( (P[j][0]-P[i][0]) * (P[j][0]-P[i][0])
+                + (P[j][1]-P[i][1]) * (P[j][1]-P[i][1]) );
 }
                 
 /*

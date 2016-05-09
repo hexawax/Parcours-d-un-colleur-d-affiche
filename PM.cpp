@@ -61,14 +61,12 @@ srand(time(NULL));
     cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
     do{ cin>>n;}while (n>limitept||n<0);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
-    int* P[n];//creation d'un tableau avec les diferents points
+    int P[n][2];
     for (int i=0; i<n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
     {
-        P[i]=new int [2];//tableau des coordonnées des points dans un  plan
-        P[i][1]=bazinga();
-        P[i][2]=bazinga();//positionnement aleatoire des points dans le plan
+        P[i][0]=bazinga();
+        P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
-    
     
     
     int menu;
