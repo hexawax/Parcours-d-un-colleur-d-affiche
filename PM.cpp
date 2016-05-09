@@ -61,13 +61,15 @@ srand(time(NULL));
     cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
     do{ cin>>n;}while (n>limitept||n<0);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
-    double* P[n];//creation d'un tableau avec les diferents points
+    int* P[n];//creation d'un tableau avec les diferents points
     for (int i=0; i<n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
     {
-        P[i]=new double [2];//tableau des coordonnées des points dans un  plan
+        P[i]=new int [2];//tableau des coordonnées des points dans un  plan
         P[i][1]=bazinga();
         P[i][2]=bazinga();//positionnement aleatoire des points dans le plan
     }
+    
+    
     
     int menu;
     do
@@ -91,61 +93,119 @@ srand(time(NULL));
         cin>>menu;
         cout<<endl;
         
-        switch(menu)
+        switch(menu)                    /// NE PAS OUBLIER LES {} POUR NE PAS REDEFINIR LES CLOCKS T0
         {
             case 0 : break;
                 
             case 1 :                 cout<<"1. Methode classique"<<endl;
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
                 
                 
-                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                
+                ///////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
+                
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
+                
+                cout<<endl;
+            }
                 break;
                 
             case 2 :                 cout<<"2. Methode du recuit simulé"<<endl;
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
+
                 
+                ////////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
                 
-                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
+                
+                cout<<endl;
+            }
                 break;
 
             case 3 :                 cout<<"3. Methode 2opt"<<endl;
-                
-                
-                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
 
+                
+                ////////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
+                
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+                
+                cout<<endl;
+            }
                 break;
                 
             case 4 :                 cout<<"4. Methode génétique"<<endl;
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
+
+                ////////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
                 
-                
-                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
-
-
+                
+                cout<<endl;
+            }
                 break;
                 
             case 5 :                 cout<<"5. Voir les temps"<<endl;
-                
-                
-                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
 
+                ////////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
+                
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+                
+                cout<<endl;
+            }
                 break;
                 
-            case 6 :                cout<<"6. Le bouton 6"<<endl;
+            case 6 :                cout<<"6. Le bouton 6"<<endl<<endl;
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
+
+                    for(int i =0; i<n ; i++)//verification des valeurs des points
+                    { cout<<"Point "<<i<<endl;
+                        cout<<P[i][1]<<endl;
+                        cout<<P[i][2]<<endl; 
+                    }
+                ////////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
                 
-                for(int i =0; i<n ; i++)//verification des valeurs des points
-                { cout<<"Point "<<i<<endl;
-                    cout<<P[i][1]<<endl;
-                    cout<<P[i][2]<<endl; 
-                }
-                
-                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
 
                 cout<<endl;
+            }
                 break;
                 
         }
