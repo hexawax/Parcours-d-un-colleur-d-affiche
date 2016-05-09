@@ -4,6 +4,7 @@
 #include <cstdlib> //rand
 #include <ctime> //intialisatn de rand
 #include <string>
+#include <vector>
 using namespace std;
 
 double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
@@ -11,7 +12,13 @@ double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
   return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
 }
 
-
+void PauseFor( double seconds) //fonction pour faire une pausen pendant X seconde
+{
+    clock_t temp;                               ///
+    temp = clock () + seconds * CLOCKS_PER_SEC ;/// ATTENTION COPIER COLLER
+    while (clock() < temp) {}                   ///
+    
+}
 
 double bazinga() //fct de point aleatoire
 {int signe =rand()%(1); //avoir un signe aleatoirement
@@ -48,37 +55,101 @@ void intro (){
 int main(){
 intro();
 srand(time(NULL));
-int limitept=10;//limite nb de point
-int n;
-cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
-do{ cin>>n;}while (n>10||n<0);
-cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
-double* P[n];//creation d'un tableau avec les diferents points
-for (int i=0; i<=n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
-{
-  P[i]=new double [2];//tableau des coordonnées des points dans un  plan
-  P[i][1]=bazinga();
-  P[i][2]=bazinga();//positionnement aleatoire des points dans le plan
-}
+    
+    int limitept=10;//limite nb de point
+    int n;
+    cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
+    do{ cin>>n;}while (n>limitept||n<0);
+    cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
+    double* P[n];//creation d'un tableau avec les diferents points
+    for (int i=0; i<n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
+    {
+        P[i]=new double [2];//tableau des coordonnées des points dans un  plan
+        P[i][1]=bazinga();
+        P[i][2]=bazinga();//positionnement aleatoire des points dans le plan
+    }
+    
+    int menu;
+    do
+    {
+        cout<<endl<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
+        cout<<"1. Methode classique"<<endl;
+        PauseFor(0.2);
+        cout<<"2. Methode du recuit simulé"<<endl;
+        PauseFor(0.2);
+        cout<<"3. Methode 2opt"<<endl;
+        PauseFor(0.2);
+        cout<<"4. Methode génétique"<<endl;
+        PauseFor(0.2);
+        cout<<"5. Voir les temps"<<endl;
+        PauseFor(0.2);
+        cout<<"6. Le bouton 6"<<endl;
+        PauseFor(0.2);
+        cout<<"0. Quitter"<<endl<<endl;
+        PauseFor(0.2);
+        cout<<"Choix : ";
+        cin>>menu;
+        cout<<endl;
+        
+        switch(menu)
+        {
+            case 0 : break;
+                
+            case 1 :                 cout<<"1. Methode classique"<<endl;
+                
+                
+                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+                break;
+                
+            case 2 :                 cout<<"2. Methode du recuit simulé"<<endl;
+                
+                
+                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+                break;
 
-for(int i =0; i<n ; i++)//verification des valeurs des points
-{ cout<<"Point "<<i<<endl;
-  cout<<P[i][1]<<endl;
-  cout<<P[i][2]<<endl;
-}
+            case 3 :                 cout<<"3. Methode 2opt"<<endl;
+                
+                
+                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
 
-////////////////////////////////CHOIX DU CHEMIN////////////////////////////////////
-
-    string [n] S ;
-S[0]=to_string(0);//on part du point O a chaque fois VOIR LA NOTICE grave
-
-for(int i=1; i<n; i++)//1 car il ya 2 0 aussi non dans s[0]+i
-{S[0]=S[0]+to_string(i);} // RESOLUS archive IcI je cherche un moyen de faire toutes les possibilité de chemin entre les mpoint mais il faut les enregistrer quelque part pour l'instant je bloque
-cout<<S[0];
-//combinaison(S,0,n);
+                break;
+                
+            case 4 :                 cout<<"4. Methode génétique"<<endl;
+                
+                
+                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
 
 
+                break;
+                
+            case 5 :                 cout<<"5. Voir les temps"<<endl;
+                
+                
+                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+
+                break;
+                
+            case 6 :                cout<<"6. Le bouton 6"<<endl;
+                
+                
+                cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+
+                cout<<endl;
+                break;
+                
+        }
+        
+    }while (menu!=0);
+    
+
+    
 
 
-  return 0;
+    return 0;
 }
