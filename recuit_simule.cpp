@@ -14,7 +14,7 @@ using namespace std;
                         A FAIRE
                                     -Mehtode ordre DONE A VERIFIER
                                     -creer la matrice distance DONE IN THE PM.CPP
-
+-un faffhichage du resultat
 -→→➤☛☞➠➲➫➫➜➜UNE BONNE GENERATION DE h
  
  
