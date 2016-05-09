@@ -136,6 +136,11 @@ srand(time(NULL));
                 
             case 6 :                cout<<"6. Le bouton 6"<<endl;
                 
+                for(int i =0; i<n ; i++)//verification des valeurs des points
+                { cout<<"Point "<<i<<endl;
+                    cout<<P[i][1]<<endl;
+                    cout<<P[i][2]<<endl; 
+                }
                 
                 cout<<endl<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
