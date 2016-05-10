@@ -4,7 +4,7 @@ gsl_libs = -lgsl -lgslcblas -lm
 
 #ajouter les nom des fichier au fur et a mesure
 
-all: recuit_simule
+all: recuit_simule root
 
 clean: rm -f -v *.o
 
@@ -20,3 +20,10 @@ recuit_simule.o: recuit_simule.cpp
 # Edition des liens
 recuit_simule: recuit_simule.o PM.o
 	${GPP} -o recuit_simule recuit_simule.o PM.o
+
+root:root.o
+	${GPP} -o root root.o  `root-config --libs`
+	
+:.o
+	${GPP} -o  .o  `root-config --libs`
+
