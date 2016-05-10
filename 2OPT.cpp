@@ -19,14 +19,17 @@ methode de distance
  http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/
 */
 
-vector <int> initiordre(const int P[][2],const int n )
+vector <int> initiordre(const int n )
 {
-
-
-
+vector<int> ordre (n);
+for (int i=0; i<n; i++)
+{
+	ordre[i]=i;
+}
+return ordre;
 }
                         
-                        
+ /*                       
                         
 vector <int> amelioration(vector<int> ordre, int n, int a, int b )
                         
@@ -38,25 +41,61 @@ vector <int> amelioration(vector<int> ordre, int n, int a, int b )
 
 
 }
+  */                      
+
+
+
+
+
+
+
                         
-                        
-void 2opt(int P[][2] , int n //a completer
+void dopt(int P[][2] , const int n //a completer
           )
 {
     vector <int> ordre (n);
     vector <int> ordre2 (n);
-    ordre=initiordre();
-    bool B=true;
-        do{
-            ordre2=amelioration();
-            if (lgc1==lgc2) {
-                B=false
-            }
-            if (lgc1<lgc2) {
-                ordre=ordre2;
-                lgc1=lgc2;
-            }
+	ordre=ordre2;
+    ordre=initiordre(n);
+    bool amelioration=true;
+        do{ amelioration=false;
+		for (int i=0; i<n-1;i++)
+		{
+			for(int j=i+1; j<n; j++)
+			{
+				if((distance(P,i,i+1)+distance(P,j,j+1))>
+					(distance(P,i,j)+distance(P,i+1,j+1)))
+				{ordre2[i+1]=ordre[j];
+				 ordre2[j]=ordre[i+1];		
+				}}
+		}
         
         
-        }while(B!=false);
+        }while(amelioration==true);
+
+cout<<endl<<"resultat : ";
+for (int i=0; i<n; i++) cout << ordre2[i] << "->"; cout << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,11 @@
 #include <string>
 #include <vector>
 #include "recuit.h"
+#include "2OPT.h"
 using namespace std;
+
+//voir kes limites de l'algorytimle
+
 
 double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
 {
@@ -79,19 +83,19 @@ srand(seed);
     {
         cout<<endl<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
         cout<<"1. Methode classique"<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"2. Methode du recuit simulé"<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"3. Methode 2opt"<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"4. Methode génétique"<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"5. Voir les temps"<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"6. Le bouton 6"<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"0. Quitter"<<endl<<endl;
-        PauseFor(0.2);
+        PauseFor(0.1);
         cout<<"Choix : ";
         cin>>menu;
         cout<<endl;
@@ -146,7 +150,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-
+		dopt(P,n);
                 
                 ////////
                 t0=clock()-t0;
