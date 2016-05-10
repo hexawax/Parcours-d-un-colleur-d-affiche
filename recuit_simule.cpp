@@ -80,16 +80,16 @@ void lgc(const vector <int> ordre, double& lg1,const int n,
 
 
 
-vector<int> randomsansrep (vector<int> value,const int MAX) //COPIER COLLER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+vector<int> randomsansrep (const int MAX) //COPIER COLLER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 {                                                                 //MIN toujours 1
-    srand(time(NULL));
+    vector <int> value(MAX);
     for (int i=0;i<MAX;i++)
     {
         bool check; //variable to check or number is already used
         int n; //variable to store the number in
         do
         {
-            n=rand()%(MAX-1)+MAX;
+            n=rand()%MAX;
             //check or number is already used:
             check=true;
             for (int j=0;j<i;j++)
@@ -113,8 +113,8 @@ int n, double h, const int P[][2])
     double lgc1;
     double lgc2;
     vector <int> ordre (n);
-    ordre=randomsansrep(ordre,n);
-    vector <int> ordre2(n);
+    ordre=randomsansrep(n);
+   vector <int> ordre2(n);
     lgc(ordre, lgc1,n,P);
     double palier=1;//pour que palier soit plus qurand que iter des le debut
     double proba;
@@ -124,7 +124,7 @@ int n, double h, const int P[][2])
         unsurT++;
         palier=exp(unsurT*h); //ne pas oublier la generation de h
        do {
-           ordre2=randomsansrep(ordre,n);
+           ordre2=randomsansrep(n);
            lgc(ordre2, lgc2,n,P);
            
            if (lgc2<=lgc1)
@@ -141,10 +141,14 @@ int n, double h, const int P[][2])
                     }
                 }//end else
         iter++;
+        cout << iter << " ";
        }while (iter<=palier);
-        }while(unsurT>10000000//condition arret a specifier
+        cout << " fin palier" << endl; 
+        }while(unsurT<5//condition arret a specifier
                );
-cout<<endl<<"resultat";
+cout<<endl<<"resultat : ";
+for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+cout<<
 }
 
 

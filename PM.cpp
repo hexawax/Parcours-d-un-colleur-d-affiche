@@ -55,7 +55,10 @@ void intro (){
 ///////////////////////////////////////////////////////////==========MAIN===========///////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(){
 intro();
-srand(time(NULL));
+unsigned int seed=time(NULL);
+
+cout << "seed=" << seed << endl;
+srand(seed);
     
     int limitept=10;//limite nb de point
     int n;
@@ -121,7 +124,7 @@ srand(time(NULL));
                 clock_t t0;
                 t0=clock();
                 ////////
-			recuit(n,h);
+			recuit(n,h,P);
                 
                 ////////
                 t0=clock()-t0;
