@@ -5,6 +5,7 @@
 #include <ctime> //intialisatn de rand
 #include <string>
 #include <vector>
+#include "recuit.h"
 using namespace std;
 
 double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
@@ -62,11 +63,12 @@ srand(time(NULL));
     do{ cin>>n;}while (n>limitept||n<0);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
     int P[n][2];
-    for (int i=0; i<n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
+    for (int i=0; i<=n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
     {
         P[i][0]=bazinga();
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
+	int h=2;
     
     
     int menu;
@@ -119,7 +121,7 @@ srand(time(NULL));
                 clock_t t0;
                 t0=clock();
                 ////////
-
+			recuit(n,h);
                 
                 ////////
                 t0=clock()-t0;

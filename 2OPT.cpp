@@ -5,6 +5,7 @@
 #include <ctime> //intialisatn de rand
 #include <string>
 #include <vector> //NE PAS OUBLIER PARTOUT !!!!!!!!!!
+#include "recuit.h"
 using namespace std;
 /*
                  NOTES
@@ -18,7 +19,7 @@ methode de distance
  http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/
 */
 
-vector <int> initiordre( )
+vector <int> initiordre(const int P[][2],const int n )
 {
 
 
@@ -27,10 +28,10 @@ vector <int> initiordre( )
                         
                         
                         
-vector <int> amelioration(vector<int> ordre, int n )
+vector <int> amelioration(vector<int> ordre, int n, int a, int b )
                         
 {
-    for (int i=0; i<new; i++) {
+    for (int i=0; i<n; i++) {
         distance(ordre[i],ordre[i+1]
     }
 

@@ -1,6 +1,5 @@
 #ifndef _PM_H_
 #define _PM_H_
-
 double factorielle(int n);
 void Pcirculaire (string tab[],int g, int tailletab);
 void combinaison (string nom[],int nec,int tailletab);

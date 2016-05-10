@@ -64,9 +64,10 @@ void Matricedistance(int n, const double *Matricedistance [], const int* P[])//n
 */
 
 
-void lgc(const vector <int> ordre, double& lg1,const int n)
+void lgc(const vector <int> ordre, double& lg1,const int n,
+						 const int P[][2] )
 {
-    lg1=0; int x,y;
+    lg1=0;
     for (int i=0; i<n-1; i++) //plus petit que n
                               //refaire les verifier la boucle
     {
@@ -105,7 +106,7 @@ vector<int> randomsansrep (vector<int> value,const int MAX) //COPIER COLLER !!!!
 
 
 void recuit(//a completer
-int n, double h)
+int n, double h, const int P[][2])
 {
     int iter=0;
     double unsurT=0;
@@ -114,7 +115,7 @@ int n, double h)
     vector <int> ordre (n);
     ordre=randomsansrep(ordre,n);
     vector <int> ordre2(n);
-    lgc(ordre, lgc1,n);
+    lgc(ordre, lgc1,n,P);
     double palier=1;//pour que palier soit plus qurand que iter des le debut
     double proba;
     
@@ -124,7 +125,7 @@ int n, double h)
         palier=exp(unsurT*h); //ne pas oublier la generation de h
        do {
            ordre2=randomsansrep(ordre,n);
-           lgc(ordre2, lgc2,n);
+           lgc(ordre2, lgc2,n,P);
            
            if (lgc2<=lgc1)
                {
@@ -141,8 +142,9 @@ int n, double h)
                 }//end else
         iter++;
        }while (iter<=palier);
-        }while(unsurT>10000//condition arret a specifier
+        }while(unsurT>10000000//condition arret a specifier
                );
+cout<<endl<<"resultat";
 }
 
 
