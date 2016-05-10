@@ -71,7 +71,7 @@ srand(seed);
         P[i][0]=bazinga();
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
-	int h=2;
+	int k=2;
     
     
     int menu;
@@ -105,7 +105,11 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                
+		vector <int> ordre (n);
+		vector <int> ordre2 (n);
+                for (int i=0; i<n; i++){
+		ordre[i]=i;
+		} 
                 
                 
                 ///////
@@ -124,7 +128,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-			recuit(n,h,P);
+			recuit(n,k,P);
                 
                 ////////
                 t0=clock()-t0;

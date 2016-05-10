@@ -104,51 +104,66 @@ vector<int> randomsansrep (const int MAX) //COPIER COLLER !!!!!!!!!!!!!!!!!!!!!!
     return value;
 }
 
+vector <int> intervers (vector<int> ordre, const int n)
+{
+	vector <int> ordre2 (n);
+	int all2=0;
+	int all1=0;
+	do{all1=rand()%n;
+	   all2=rand()%n;}while(all1==all2);
+	ordre2=ordre;
+	ordre2[all1]=ordre[all2];
+	ordre2[all2]=ordre[all1];	
+return ordre2;
+}
+
+double baissetemp(double T)
+{return T/4;}
+
+
 
 void recuit(//a completer
-int n, double h, const int P[][2])
+int n, double k, const int P[][2])
 {
+    srand(time(0));
     int iter=0;
-    double unsurT=0;
+    double T=40;
     double lgc1;
     double lgc2;
+    int B=0;
     vector <int> ordre (n);
     ordre=randomsansrep(n);
    vector <int> ordre2(n);
     lgc(ordre, lgc1,n,P);
-    double palier=1;//pour que palier soit plus qurand que iter des le debut
-    double proba;
-    
-    
+    double proba;//pour que palier soit plus qurand que iter des le debut
     do{
-        unsurT++;
-        palier=exp(unsurT*h); //ne pas oublier la generation de h
        do {
-           ordre2=randomsansrep(n);
+           ordre2=intervers(ordre,n);
            lgc(ordre2, lgc2,n,P);
-           
-           if (lgc2<=lgc1)
+            bool change=false;
+            if (lgc2<lgc1) change=true;
+            if(lgc1<lgc2){ 
+                   proba=exp(-(lgc2-lgc1)/(k*T));//kT doit etre de l'ordre du delta lgc
+                   if(proba0_1()<proba) change=true;
+            }
+            if (change)
                {
                ordre=ordre2;
                lgc1=lgc2;
-                }
-           else{proba=exp((lgc1-lgc2)*unsurT);
-                
-                    if(proba0_1()<proba)
-                    {
-                        ordre=ordre2;
-                        lgc1=lgc2;
-                    }
-                }//end else
+                B=0;
+               }
+            else B++;
+
         iter++;
-        cout << iter << " ";
-       }while (iter<=palier);
-        cout << " fin palier" << endl; 
-        }while(unsurT<5//condition arret a specifier
-               );
+        cout << lgc1 << " ";
+       }while (B<3);
+       cout << " fin palier T=" << T << endl; 
+      B=0; T=baissetemp(T);
+    }while(T>0.1);
+
 cout<<endl<<"resultat : ";
 for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
-cout<<
+cout<<"longeur : "<<lgc1<<endl;
 }
 
 
