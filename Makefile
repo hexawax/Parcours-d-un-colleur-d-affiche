@@ -11,12 +11,16 @@ clean: rm -f -v *.o
 
 
 # Compilation :
+root.o : root.cpp
+	${GPP}  -c -o root.o root.cpp
+
 PM.o : PM.cpp 
 	${GPP}  -c -o PM.o PM.cpp
 
 recuit_simule.o: recuit_simule.cpp 
 	${GPP} -c -o recuit_simule.o recuit_simule.cpp
-
+%.o:%.cpp 
+	${GPP} -c -o $@ -I `root-config --incdir`  $<
 # Edition des liens
 recuit_simule: recuit_simule.o PM.o
 	${GPP} -o recuit_simule recuit_simule.o PM.o
