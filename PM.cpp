@@ -33,6 +33,29 @@ double bazinga() //fct de point aleatoire
 else return -rand()%(100);//valeur aleatoire du nombre
 }
 
+void anagramme(vector <int> ordre, const int n)
+{
+    vector <int> save; double lgc2 ;double lgc1=10000000000;//grand nombre pour qu'il soit toujours desous la permiere doistance de la boucle
+    for (int k=0; k<n; k++)
+    { int i=1; int temp;
+        while ((n-i)>0) {
+            ordre[n-i]=temp;
+            ordre[n-i-1]=ordre[n-1];
+            ordre[n-i-1]=temp;
+            i++;
+            lgc(ordre,lgc2,n);
+            if(lgc2<lgc2){
+            save=ordre;
+                lgc1=lgc2;}
+            
+        }
+    }
+}
+
+
+
+
+
 void intro (){
   cout<<"___    ____  ______   ____    ____  ___       _______  _______  __    __  .______    "<<endl;
   cout<<"\\   \\  /   / /  __  \\  \\   \\  /   / /   \\     /  _____||   ____||  |  |  | |   _  \\     "<<endl;
@@ -64,7 +87,7 @@ unsigned int seed=time(NULL);
 cout << "seed=" << seed << endl;
 srand(seed);
     
-    int limitept=10;//limite nb de point
+    int limitept=50;//limite nb de point
     int n;
     cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
     do{ cin>>n;}while (n>limitept||n<0);
@@ -109,11 +132,9 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-		vector <int> ordre (n);
-		vector <int> ordre2 (n);
-                for (int i=0; i<n; i++){
-		ordre[i]=i;
-		} 
+                vector <int> ordre (n);
+                anagramme(ordre,n);
+                
                 
                 
                 ///////
