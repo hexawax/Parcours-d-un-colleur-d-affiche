@@ -8,10 +8,9 @@
 #include <TFile.h>
 #include <TRandom.h>
 #include <vector>
-
 using namespace std;
 
-void graph (const int P[][2], vector <int> ordre (n),int argc, char **argv)
+void graph (const int P[][2], vector <int> ordre);//,int argc, char **argv)
 {
   TApplication theApp("App", &argc, argv);
 
