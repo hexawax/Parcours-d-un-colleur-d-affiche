@@ -22,7 +22,7 @@ void PauseFor( double seconds) //fonction pour faire une pausen pendant X second
     clock_t temp;                               ///
     temp = clock () + seconds * CLOCKS_PER_SEC ;/// ATTENTION COPIER COLLER
     while (clock() < temp) {}                   ///
-    
+
 }
 
 double bazinga() //fct de point aleatoire
@@ -47,7 +47,7 @@ void anagramme(vector <int> ordre, const int n)
             if(lgc2<lgc2){
             save=ordre;
                 lgc1=lgc2;}
-            
+
         }
     }
 }
@@ -80,13 +80,14 @@ void intro (){
 
 }
 ///////////////////////////////////////////////////////////==========MAIN===========///////////////////////////////////////////////////////////////////////////////////////////////////////
-int main(){
+int main(int argc, char **argv)
+{
 intro();
 unsigned int seed=time(NULL);
 
 cout << "seed=" << seed << endl;
 srand(seed);
-    
+
     int limitept=50;//limite nb de point
     int n;
     cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
@@ -99,8 +100,7 @@ srand(seed);
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
 	int k=2;
-    
-    
+
     int menu;
     do
     {
@@ -111,7 +111,7 @@ srand(seed);
         PauseFor(0.1);
         cout<<"3. Methode 2opt"<<endl;
         PauseFor(0.1);
-        cout<<"4. Methode génétique"<<endl;
+        cout<<"4. Afficher ROOT"<<endl;
         PauseFor(0.1);
         cout<<"5. Voir les temps"<<endl;
         PauseFor(0.1);
@@ -122,11 +122,11 @@ srand(seed);
         cout<<"Choix : ";
         cin>>menu;
         cout<<endl;
-        
+
         switch(menu)                    /// NE PAS OUBLIER LES {} POUR NE PAS REDEFINIR LES CLOCKS T0
         {
             case 0 : break;
-                
+
             case 1 :                 cout<<"1. Methode classique"<<endl;
             {
                 clock_t t0;
@@ -134,34 +134,34 @@ srand(seed);
                 ////////
                 vector <int> ordre (n);
                 anagramme(ordre,n);
-                
-                
-                
+
+
+
                 ///////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
-                
+
                 cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
-                
+
                 cout<<endl;
             }
                 break;
-                
+
             case 2 :                 cout<<"2. Methode du recuit simulé"<<endl;
             {
                 clock_t t0;
                 t0=clock();
                 ////////
 			recuit(n,k,P);
-                
+
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
-                
+
                 cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
-                
+
                 cout<<endl;
             }
                 break;
@@ -172,35 +172,37 @@ srand(seed);
                 t0=clock();
                 ////////
 		dopt(P,n);
-                
-                ////////
-                t0=clock()-t0;
-                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
-                
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
-                
-                cout<<endl;
-            }
-                break;
-                
-            case 4 :                 cout<<"4. Methode génétique"<<endl;
-            {
-                clock_t t0;
-                t0=clock();
-                ////////
 
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
-                
+
                 cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
-                
+
                 cout<<endl;
             }
                 break;
-                
+
+            case 4 :                 cout<<"4. Afficher ROOT"<<endl;
+            {
+                clock_t t0;
+                t0=clock();
+                ////////
+                vector <int> ordre (n);
+                anagramme(ordre,n);
+                void graph (P, ordre,&argc, argv)
+                ////////
+                t0=clock()-t0;
+                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
+
+                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
+                PauseFor(5);
+
+                cout<<endl;
+            }
+                break;
+
             case 5 :                 cout<<"5. Voir les temps"<<endl;
             {
                 clock_t t0;
@@ -210,14 +212,14 @@ srand(seed);
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
-                
+
                 cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
-                
+
                 cout<<endl;
             }
                 break;
-                
+
             case 6 :                cout<<"6. Le bouton 6"<<endl<<endl;
             {
                 clock_t t0;
@@ -227,25 +229,25 @@ srand(seed);
                     for(int i =0; i<n ; i++)//verification des valeurs des points
                     { cout<<"Point "<<i<<endl;
                         cout<<P[i][1]<<endl;
-                        cout<<P[i][2]<<endl; 
+                        cout<<P[i][2]<<endl;
                     }
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
-                
+
                 cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
                 PauseFor(5);
 
                 cout<<endl;
             }
                 break;
-                
-        }
-        
-    }while (menu!=0);
-    
 
-    
+        }
+
+    }while (menu!=0);
+
+
+
 
 
     return 0;

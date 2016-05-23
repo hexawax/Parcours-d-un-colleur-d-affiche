@@ -11,12 +11,12 @@ using namespace std;
 /*
                  NOTES
 ne fonctionne pas pour moins de 4 points !!!!
- 
+
                 A FAIRE
 methode de distance
- 
+
                 A FINIR
- 
+
  http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/http://www.technical-recipes.com/2012/applying-c-implementations-of-2-opt-to-travelling-salesman-problems/
 */
 
@@ -29,11 +29,11 @@ for (int i=0; i<n; i++)
 }
 return ordre;
 }
-                        
- /*                       
-                        
+
+ /*
+
 vector <int> amelioration(vector<int> ordre, int n, int a, int b )
-                        
+
 {
     for (int i=0; i<n; i++) {
         distance(ordre[i],ordre[i+1]
@@ -42,7 +42,7 @@ vector <int> amelioration(vector<int> ordre, int n, int a, int b )
 
 
 }
-  */                      
+
 
 
 void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
@@ -62,7 +62,7 @@ void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
 
 
 
-                        
+
 void dopt(const int P[][2] , const int& n //a completer
           )
 {
@@ -80,9 +80,9 @@ void dopt(const int P[][2] , const int& n //a completer
             for ( int k = i + 1; k < n; k++)
             {
                 Tswap( i, k,n,ordre, ordre2 );
-                
+
                 lgc(ordre2,lgc2,n);
-                
+
                 if ( lgc1 < lgc2 )
                 {
                     // amelioration trouvé alors on reset
@@ -91,7 +91,7 @@ void dopt(const int P[][2] , const int& n //a completer
                 }
             }
         }
-        
+
         amelioration ++;
     }
 }
@@ -102,17 +102,4 @@ void dopt(const int P[][2] , const int& n //a completer
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
