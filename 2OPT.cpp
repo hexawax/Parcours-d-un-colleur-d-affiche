@@ -6,6 +6,7 @@
 #include <string>
 #include <vector> //NE PAS OUBLIER PARTOUT !!!!!!!!!!
 #include "recuit.h"
+#include "PM.h"
 using namespace std;
 /*
                  NOTES
@@ -44,40 +45,56 @@ vector <int> amelioration(vector<int> ordre, int n, int a, int b )
   */                      
 
 
+void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
+{
+    int dec=0;
+    for ( int c = i; c <= k; ++c )
+    {ordre2 [i]=ordre [k-dec];
+        dec++;
+    } //version modifier dans ordre 2
+    cout<<endl<<"resultat 1 : ";
+    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+    cout<<endl<<"resultat 2 : ";
+    for (int i=0; i<n; i++) cout << ordre2[i] << "->"; cout << endl;
 
+}
 
 
 
 
                         
-void dopt(int P[][2] , const int n //a completer
+void dopt(const int P[][2] , const int& n //a completer
           )
 {
     vector <int> ordre (n);
     vector <int> ordre2 (n);
 	ordre=ordre2;
     ordre=initiordre(n);
-    bool amelioration=true;
-        do{ amelioration=false;
-		for (int i=0; i<n-1;i++)
-		{
-			for(int j=i+1; j<n; j++)
-			{
-				if((distance(P,i,i+1)+distance(P,j,j+1))>
-					(distance(P,i,j)+distance(P,i+1,j+1)))
-				{ordre2[i+1]=ordre[j];
-				 ordre2[j]=ordre[i+1];		
-				}}
-		}
+    double lgc1=0;
+    double lgc2=0;
+    int amelioration=0;
+    while (amelioration<20) {
+        lgc(ordre,lgc1,n);
+        for ( int i = 0; i < n - 1; i++ )
+        {
+            for ( int k = i + 1; k < n; k++)
+            {
+                Tswap( i, k,n,ordre, ordre2 );
+                
+                lgc(ordre2,lgc2,n);
+                
+                if ( lgc1 < lgc2 )
+                {
+                    // amelioration trouvé alors on reset
+                    amelioration = 0;
+                    lgc1 = lgc2;
+                }
+            }
+        }
         
-        
-        }while(amelioration==true);
-
-cout<<endl<<"resultat : ";
-for (int i=0; i<n; i++) cout << ordre2[i] << "->"; cout << endl;
+        amelioration ++;
+    }
 }
-
-
 
 
 
