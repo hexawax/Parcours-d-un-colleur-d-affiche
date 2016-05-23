@@ -37,11 +37,11 @@ void anagramme(vector <int> ordre, const int n)
 {
     vector <int> save; double lgc2 ;double lgc1=10000000000;//grand nombre pour qu'il soit toujours desous la permiere doistance de la boucle
     for (int k=0; k<n; k++)
-    { int i=1; int temp;
+    { int i=1; int tempo=0;
         while ((n-i)>0) {
-            ordre[n-i]=temp;
+            ordre[n-i]=tempo;
             ordre[n-i-1]=ordre[n-1];
-            ordre[n-i-1]=temp;
+            ordre[n-i-1]=tempo;
             i++;
             lgc(ordre,lgc2,n);
             if(lgc2<lgc2){
