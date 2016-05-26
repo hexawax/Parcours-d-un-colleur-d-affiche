@@ -33,5 +33,5 @@ recuit_simule.o: recuit_simule.cpp
 
 # Edition des liens
 recuit_simule: recuit_simule.o PM.o
-	${GPP} -o recuit_simule recuit_simule.o PM.o ${link_root}
+	${GPP} -o -I recuit_simule recuit_simule.o PM.o ${link_root}
 
