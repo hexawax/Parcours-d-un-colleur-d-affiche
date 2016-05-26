@@ -33,5 +33,5 @@ recuit_simule.o: recuit_simule.cpp
 
 # Edition des liens
 recuit_simule: recuit_simule.o PM.o 2OPT.o
-	${GPP} -o recuit_simule recuit_simule.o PM.o 2OPT.o ${link_root}
+	${GPP} -o Voyageur_optimisé recuit_simule.o PM.o 2OPT.o ${link_root}
 
