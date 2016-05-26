@@ -8,7 +8,8 @@ root= 'root-config --libs'
 
 all: recuit_simule
 
-clean: rm -f -v *.o
+clean:
+			rm -f -v *.o
 
 
 
