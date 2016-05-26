@@ -43,7 +43,7 @@ vector <int> amelioration(vector<int> ordre, int n, int a, int b )
 
 
 }
-
+*/
 
 
 void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
@@ -62,7 +62,7 @@ void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
 
 
 
-*/
+
 
 void dopt(const int P[][2] , const int& n //a completer
           )
