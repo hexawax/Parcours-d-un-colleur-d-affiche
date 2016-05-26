@@ -36,7 +36,7 @@ double bazinga() //fct de point aleatoire
 else return -rand()%(100);//valeur aleatoire du nombre
 }
 
-void anagramme(vector <int> ordre, const int n)
+void anagramme(vector <int> ordre, const int n,const int P[][2])
 {
     vector <int> save; double lgc2 ;double lgc1=10000000000;//grand nombre pour qu'il soit toujours desous la permiere doistance de la boucle
     for (int k=0; k<n; k++)
@@ -46,8 +46,8 @@ void anagramme(vector <int> ordre, const int n)
             ordre[n-i-1]=ordre[n-1];
             ordre[n-i-1]=tempo;
             i++;
-            lgc(ordre,lgc2,n);
-            
+            lgc(ordre,lgc2,n,P);
+
 	    if(lgc2<lgc2){
             save=ordre;
                 lgc1=lgc2;}
@@ -137,7 +137,7 @@ srand(seed);
                 t0=clock();
                 ////////
                 vector <int> ordre (n);
-                anagramme(ordre,n);
+                anagramme(ordre,n,P);
 
 
 
@@ -194,8 +194,8 @@ srand(seed);
                 t0=clock();
                 ////////
                 vector <int> ordre (n);
-                anagramme(ordre,n);
-                graph (P, ordre,&argc, argv);
+                anagramme(ordre,n,P);
+                graph (P, ordre);
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
