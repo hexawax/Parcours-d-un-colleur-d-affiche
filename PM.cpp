@@ -8,7 +8,6 @@
 #include "graph.h"
 #include "recuit.h"
 #include "2OPT.h"
-#include "graph.h"
 
 using namespace std;
 
