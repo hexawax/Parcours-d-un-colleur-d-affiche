@@ -7,11 +7,71 @@
 #include <vector>
 //#include "graph.h"
 #include "recuit.h"
-#include "2OPT.h"
-
 using namespace std;
 
 //voir kes limites de l'algorytimle
+vector <int> initiordre(const int n )
+{
+    vector<int> ordre (n);
+    for (int i=0; i<n; i++)
+    {
+        ordre[i]=i;
+    }
+    return ordre;
+}
+
+void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
+{
+    int dec=0;
+    ordre=ordre2;
+    for ( int c = i; c <= k; ++c )
+    {ordre2 [i]=ordre [k-dec];
+        dec++;
+    } //version modifier dans ordre 2
+    cout<<endl<<"resultat 1 : ";
+    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+    cout<<endl<<"resultat 2 : ";
+    for (int i=0; i<n; i++) cout << ordre2[i] << "->"; cout << endl;
+    
+}
+
+
+
+
+
+void dopt(const int n, const int P[][2])
+{
+    vector <int> ordre (n);
+    vector <int> ordre2 (n);
+    ordre=initiordre(n);
+    ordre=ordre2;
+    double lgc1=0;
+    double lgc2=0;
+    lgc(ordre,lgc1,n,P);
+    int amelioration=0;
+    while (amelioration<20) {
+        lgc(ordre,lgc1,n,P);
+        for ( int i = 0; i < n - 1; i++ )
+        {
+            for ( int k = i + 1; k < n; k++)
+            {
+                Tswap( i, k,n,ordre, ordre2 );
+                
+                lgc(ordre2,lgc2,n,P);
+                
+                if ( lgc1 < lgc2 )
+                {
+                    // amelioration trouvé alors on reset
+                    amelioration = 0;
+                    lgc1 = lgc2;
+                    cout<<"amelioration trouvé"<<endl;
+                }
+            }
+        }
+        
+        amelioration ++;
+    }
+}
 
 
 double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
@@ -174,7 +234,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                //dopt(P,n);
+                dopt(n,P);
 
                 ////////
                 t0=clock()-t0;

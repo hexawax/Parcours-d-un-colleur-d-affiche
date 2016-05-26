@@ -43,12 +43,22 @@ vector <int> amelioration(vector<int> ordre, int n, int a, int b )
 
 
 }
+
+
+void echange_parcours(int ordre1, int ordre2) {
+    int inter;
+    
+    inter=parcours[ordre2];
+    parcours[ordre2]=parcours[ordre1];
+    parcours[ordre1]=inter;
+}
 */
 
 
 void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
 {
     int dec=0;
+    ordre=ordre2;
     for ( int c = i; c <= k; ++c )
     {ordre2 [i]=ordre [k-dec];
         dec++;
@@ -64,8 +74,7 @@ void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
 
 
 
-void dopt(const int P[][2] , const int& n //a completer
-          )
+void dopt(const int P[][2] , const int n)
 {
     vector <int> ordre (n);
     vector <int> ordre2 (n);
