@@ -118,7 +118,7 @@ return ordre2;
 }
 
 double baissetemp(double T)
-{return T/4;}
+{return log(T);}
 
 
 

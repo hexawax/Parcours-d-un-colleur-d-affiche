@@ -7,6 +7,8 @@
 #include <vector>
 #include "recuit.h"
 #include "2OPT.h"
+#include "graph.h"
+
 using namespace std;
 
 //voir kes limites de l'algorytimle
@@ -44,7 +46,8 @@ void anagramme(vector <int> ordre, const int n)
             ordre[n-i-1]=tempo;
             i++;
             lgc(ordre,lgc2,n);
-            if(lgc2<lgc2){
+            
+	    if(lgc2<lgc2){
             save=ordre;
                 lgc1=lgc2;}
 
@@ -90,7 +93,7 @@ srand(seed);
 
     int limitept=50;//limite nb de point
     int n;
-    cout<<endl<<"Entrez premierement le mombre de point (limite a "<<limitept<<") : ";
+    cout<<endl<<"Entrez premierement le nombre de point (limite a "<<limitept<<") : ";
     do{ cin>>n;}while (n>limitept||n<0);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
     int P[n][2];
@@ -191,7 +194,7 @@ srand(seed);
                 ////////
                 vector <int> ordre (n);
                 anagramme(ordre,n);
-                void graph (P, ordre,&argc, argv)
+                graph (P, ordre,&argc, argv);
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;

@@ -1,3 +1,4 @@
+
 //METHODE 2OPT
 #include<iostream>
 #include <cmath> //sqrt
@@ -61,7 +62,7 @@ void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
 
 
 
-
+*/
 
 void dopt(const int P[][2] , const int& n //a completer
           )
@@ -102,4 +103,3 @@ void dopt(const int P[][2] , const int& n //a completer
 
 
 
-*/

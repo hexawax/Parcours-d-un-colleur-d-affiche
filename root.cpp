@@ -16,16 +16,14 @@ int main(int argc, char **argv)
   
   TApplication theApp("App", &argc, argv);  
   
-  TH1F *histo = new TH1F (“histo”, “histogramme points”, n, -100.0, 100);
-  TRandom rnd;
-  for (int i = 0; i < 10000; ++i) {
-    double x = rnd.Gaus (1.5, 1.0);
-    histo->Fill (x);
-  }
+  TMultiGraph *histo = new TMultiGraph ();//permet de générer plusieurs courbe sur un même graph
+  
+  recuit(n,k,P)->Fill (x);
+  
   TFile outfile (“histo.root”, “RECREATE”);
   
   TFile *fichiergraphique=TFile::Open("histo.root", "RECREATE");
-  TGraph *histo=new TGraph(n);
+  TGraph *histo=new TGraph(x);
   
   histo->SetLineColor(2);
   histo->SetMarkerColor(2);
