@@ -90,6 +90,7 @@ void dopt(const int P[][2] , const int& n //a completer
                     // amelioration trouvé alors on reset
                     amelioration = 0;
                     lgc1 = lgc2;
+                    cout<<"amelioration trouvé"<<endl;
                 }
             }
         }
