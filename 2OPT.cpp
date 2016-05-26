@@ -73,16 +73,17 @@ void dopt(const int P[][2] , const int& n //a completer
     ordre=initiordre(n);
     double lgc1=0;
     double lgc2=0;
+		lgc(ordre,lgc1,n,P);
     int amelioration=0;
     while (amelioration<20) {
-        lgc(ordre,lgc1,n);
+        lgc(ordre,lgc1,n,P);
         for ( int i = 0; i < n - 1; i++ )
         {
             for ( int k = i + 1; k < n; k++)
             {
                 Tswap( i, k,n,ordre, ordre2 );
 
-                lgc(ordre2,lgc2,n);
+                lgc(ordre2,lgc2,n,P);
 
                 if ( lgc1 < lgc2 )
                 {
@@ -96,10 +97,3 @@ void dopt(const int P[][2] , const int& n //a completer
         amelioration ++;
     }
 }
-
-
-
-
-
-
-
