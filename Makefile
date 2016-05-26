@@ -22,16 +22,16 @@ clean:
 
 # Compilation :
 PM.o : PM.cpp 
-	${GPP} -c -I ${comp_root} -o PM.o PM.cpp ${link_root}
-
+	${GPP} -c -I ${comp_root} -o PM.o PM.cpp
 recuit_simule.o: recuit_simule.cpp 
-	${GPP} -c -I ${comp_root} -o recuit_simule.o recuit_simule.cpp ${link_root}
-
+	${GPP} -c -I ${comp_root} -o recuit_simule.o recuit_simule.cpp
+2OPT: 2OPT.cpp
+	${GPP} -c -I ${comp_root} -o 2OPT.o 2OPT.cpp
 
 %.o : %.cpp Makefile
-	${GPP}  -Wall -c -I ${comp_root} -o $@ $< ${link_root}
+	${GPP}  -Wall -c -I ${comp_root} -o $@ $<
 
 # Edition des liens
-recuit_simule: recuit_simule.o PM.o
-	${GPP} -o -I recuit_simule recuit_simule.o PM.o ${link_root}
+recuit_simule: recuit_simule.o PM.o 2OPT.o
+	${GPP} -o recuit_simule recuit_simule.o PM.o 2OPT.o ${link_root}
 

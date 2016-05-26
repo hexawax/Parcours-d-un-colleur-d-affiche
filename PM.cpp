@@ -5,7 +5,7 @@
 #include <ctime> //intialisatn de rand
 #include <string>
 #include <vector>
-#include "graph.h"
+//#include "graph.h"
 #include "recuit.h"
 #include "2OPT.h"
 
@@ -174,7 +174,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-		dopt(P,n);
+                //dopt(P,n);
 
                 ////////
                 t0=clock()-t0;
@@ -192,9 +192,9 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                vector <int> ordre (n);
-                anagramme(ordre,n,P);
-                graph (P, ordre);
+                //vector <int> ordre (n);
+                //anagramme(ordre,n,P);
+                //graph (P, ordre);
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
