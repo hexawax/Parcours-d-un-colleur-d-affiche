@@ -15,8 +15,6 @@ clean: rm -f -v *.o
 # Compilation :
 PM.o : PM.cpp 
 	${GPP}  -c -o PM.o PM.cpp
-graph.o: graph.cpp
-	${GPP}  -c -o graph.o graph.cpp
 
 2OPT.o: 2OPT.cpp 
 	${GPP} -c -o 2OPT.o 2OPT.cpp
