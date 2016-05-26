@@ -7,7 +7,9 @@ GPP= g++ -Wall -std=c++11 #a ajouter pour fonction to_string(int)
 
 gsl_libs = -lgsl -lgslcblas -lm
 
-root= '../root-config --libs --cflags'
+comp_root= `root-config --incdir`
+
+link_root= `root-config --libs`
 
 #ajouter les nom des fichier au fur et a mesure
 
@@ -20,15 +22,16 @@ clean:
 
 # Compilation :
 PM.o : PM.cpp 
-	${GPP} -I/usr/include/root -c -o PM.o PM.cpp
+	${GPP} -c -I ${comp_root} -o PM.o PM.cpp ${link_root}
 
 recuit_simule.o: recuit_simule.cpp 
-	${GPP} -I/usr/include/root -c -o recuit_simule.o recuit_simule.cpp
+	${GPP} -c -I ${comp_root} -o recuit_simule.o recuit_simule.cpp ${link_root}
 
 
 %.o : %.cpp Makefile
-	${GPP}  -Wall -c -o $@ $< `../root-config --libs --cflags`
+	${GPP}  -Wall -c -I ${comp_root} -o $@ $< ${link_root}
 
 # Edition des liens
 recuit_simule: recuit_simule.o PM.o
-	${GPP} -L/usr/include/root -o recuit_simule recuit_simule.o PM.o
+	${GPP} -o recuit_simule recuit_simule.o PM.o ${link_root}
+
