@@ -19,15 +19,16 @@ clean:
 
 
 # Compilation :
+PM.o : PM.cpp 
+	${GPP} -I/usr/include/root -c -o PM.o PM.cpp
 
-%.o : %.cpp %.h Makefile
-	${GPP}  -Wall -c -o $@ $<
+recuit_simule.o: recuit_simule.cpp 
+	${GPP} -I/usr/include/root -c -o recuit_simule.o recuit_simule.cpp
 
 
 %.o : %.cpp Makefile
 	${GPP}  -Wall -c -o $@ $< `../root-config --libs --cflags`
 
 # Edition des liens
-
-recuit_simule: recuit_simule.o
-	${GPP} -o $@ $^ ${gsl_libs}
+recuit_simule: recuit_simule.o PM.o
+	${GPP} -L/usr/include/root -o recuit_simule recuit_simule.o PM.o
