@@ -1,31 +1,33 @@
+###########################################################################################
+#######Makefile pour le projet du colleur d'affiches#######################################
+###########################################################################################
+
+
 GPP= g++ -Wall -std=c++11 #a ajouter pour fonction to_string(int)
 
 gsl_libs = -lgsl -lgslcblas -lm
 
-root= 'root-config --libs'
+root= '../root-config --libs --cflags'
 
 #ajouter les nom des fichier au fur et a mesure
 
-all: recuit_simule
+all: recuit_simule 2OPT
 
-clean:
-			rm -f -v *.o
+clean: 
+	rm -f -v *.o
 
 
 
 # Compilation :
-PM.o : PM.cpp
-	${GPP}  -c -o PM.o PM.cpp
 
-2OPT.o: 2OPT.cpp
-	${GPP} -c -o 2OPT.o 2OPT.cpp
+%.o : %.cpp %.h Makefile
+	${GPP}  -Wall -c -o $@ $<
 
-recuit_simule.o: recuit_simule.cpp
-	${GPP} -c -o recuit_simule.o recuit_simule.cpp
 
-graph.o: graph.cpp
-	${GPP} -c -o graph.o graph.cpp `root-config --libs`
+%.o : %.cpp Makefile
+	${GPP}  -Wall -c -o $@ $< `../root-config --libs --cflags`
 
 # Edition des liens
-recuit_simule: recuit_simule.o PM.o 2OPT.o graph.o
-	${GPP} -o recuit_simule recuit_simule.o PM.o 2OPT.o graph.o ${root}
+
+recuit_simule: recuit_simule.o
+	${GPP} -o $@ $^ ${gsl_libs}
