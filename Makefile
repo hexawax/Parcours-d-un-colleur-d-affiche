@@ -18,8 +18,6 @@ all: recuit_simule 2OPT
 clean: 
 	rm -f -v *.o
 
-
-
 # Compilation :
 PM.o : PM.cpp 
 	${GPP} -c -I ${comp_root} -o PM.o PM.cpp
