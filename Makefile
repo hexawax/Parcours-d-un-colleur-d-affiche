@@ -24,6 +24,13 @@ graph.o: graph.cpp
 recuit_simule.o: recuit_simule.cpp 
 	${GPP} -c -o recuit_simule.o recuit_simule.cpp
 
+graph.o: graph.cpp 
+	${GPP} -c -o graph.o graph.cpp `root-config --libs` 
+
 # Edition des liens
 recuit_simule: recuit_simule.o PM.o 2OPT.o graph.o
+<<<<<<< HEAD
 	${GPP} -o recuit_simule recuit_simule.o PM.o 2OPT.o ${root}
+=======
+	${GPP} -o recuit_simule recuit_simule.o PM.o 2OPT.o graph.o
+>>>>>>> master

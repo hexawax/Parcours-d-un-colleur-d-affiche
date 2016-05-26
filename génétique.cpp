@@ -31,7 +31,7 @@ void calcul_chemin (int n,string nom){
 bool tri (structure x,structure y){
 return (x.genet<y.genet)//retourne vrai si le premier chemin est plus court que le deuxième
 }
-*/
+
 
 class genet () {
 public:
@@ -45,7 +45,27 @@ int genet::ville1 (int a){
 
 	int D=
 	int i=0;
-	
+	*/
+
+void genet (int j, double q, int L) {
+
+L=n;
+q=1;
+j=100;
+
+P'<-Générer-pop-initial S;
+
+for (int i=0 ; i<j ; i++) {
+	if (j=0 mod 2) {
+		P<-Sec-elite P;
+		}
+	if (j=1 mod 2) {
+		P<-Selec-par-tournois P; 
+	}
+	P<-Pass-Gen-Suiv P;
+}
+Element-le-mieux adapté P;
+}	 
 
 
 
