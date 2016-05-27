@@ -208,7 +208,8 @@ void methodecombine (int n, double k, const int P[][2]
         cout << " fin palier T=" << T << endl;
         B=0; T=baissetemp(T);
     }while(T>0.1);
-    
+    vector <int> recuit (n);
+    recuit=ordre;
     cout<<endl<<"resultat : ";
     for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
     cout<<"longeur : "<<lgc1<<endl;
@@ -239,6 +240,10 @@ void methodecombine (int n, double k, const int P[][2]
         
     }while (minchange<0);
     
+    lgc(recuit,lgc2,n,P);
+    if (lgc1>lgc2) {
+        ordre=recuit;
+    }
     
     cout<<endl<<endl<<"RESULTAT FINAL : ";
     for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;

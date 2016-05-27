@@ -23,7 +23,6 @@ void PauseFor( double seconds) //fonction pour faire une pausen pendant X second
     clock_t temp;                               ///
     temp = clock () + seconds * CLOCKS_PER_SEC ;/// ATTENTION COPIER COLLER
     while (clock() < temp) {}                   ///
-
 }
 
 double bazinga() //fct de point aleatoire
@@ -158,8 +157,8 @@ srand(seed);
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
+                PauseFor(2);
 
                 cout<<endl;
             }
@@ -176,8 +175,8 @@ srand(seed);
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
+                PauseFor(2);
 
                 cout<<endl;
             }
@@ -238,8 +237,8 @@ srand(seed);
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
+                PauseFor(2);
 
                 cout<<endl;
             }
@@ -256,8 +255,8 @@ srand(seed);
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
+                PauseFor(2);
 
                 cout<<endl;
             }
@@ -273,8 +272,8 @@ srand(seed);
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
+                PauseFor(2);
 
                 cout<<endl;
             }
@@ -295,8 +294,8 @@ srand(seed);
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 5 s."<<endl<<endl;
-                PauseFor(5);
+                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
+                PauseFor(2);
 
                 cout<<endl;
             }
