@@ -4,75 +4,16 @@
 #include <cstdlib> //rand
 #include <ctime> //intialisatn de rand
 #include <string>
+#include <iomanip>
 #include <vector>
 //#include "graph.h"
 #include "recuit.h"
+#include "MC.h"
+#include <algorithm>
+
 using namespace std;
 
 //voir kes limites de l'algorytimle
-vector <int> initiordre(const int n )
-{
-    vector<int> ordre (n);
-    for (int i=0; i<n; i++)
-    {
-        ordre[i]=i;
-    }
-    return ordre;
-}
-
-void Tswap(int i, int k,const int & n,vector <int> ordre,vector <int> ordre2 )
-{
-    int dec=0;
-    ordre=ordre2;
-    for ( int c = i; c <= k; ++c )
-    {ordre2 [i]=ordre [k-dec];
-        dec++;
-    } //version modifier dans ordre 2
-    cout<<endl<<"resultat 1 : ";
-    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
-    cout<<endl<<"resultat 2 : ";
-    for (int i=0; i<n; i++) cout << ordre2[i] << "->"; cout << endl;
-    
-}
-
-
-
-
-
-void dopt(const int n, const int P[][2])
-{
-    vector <int> ordre (n);
-    vector <int> ordre2 (n);
-    ordre=initiordre(n);
-    ordre=ordre2;
-    double lgc1=0;
-    double lgc2=0;
-    lgc(ordre,lgc1,n,P);
-    int amelioration=0;
-    while (amelioration<20) {
-        lgc(ordre,lgc1,n,P);
-        for ( int i = 0; i < n - 1; i++ )
-        {
-            for ( int k = i + 1; k < n; k++)
-            {
-                Tswap( i, k,n,ordre, ordre2 );
-                
-                lgc(ordre2,lgc2,n,P);
-                
-                if ( lgc1 < lgc2 )
-                {
-                    // amelioration trouvé alors on reset
-                    amelioration = 0;
-                    lgc1 = lgc2;
-                    cout<<"amelioration trouvé"<<endl;
-                }
-            }
-        }
-        
-        amelioration ++;
-    }
-}
-
 
 double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
 {
@@ -154,7 +95,7 @@ srand(seed);
     int limitept=50;//limite nb de point
     int n;
     cout<<endl<<"Entrez premierement le nombre de point (limite a "<<limitept<<") : ";
-    do{ cin>>n;}while (n>limitept||n<0);
+    do{ cin>>n;}while (n>limitept||n<4);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
     int P[n][2];
     for (int i=0; i<=n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
@@ -173,11 +114,11 @@ srand(seed);
         cout<<"2. Methode du recuit simulé"<<endl;
         PauseFor(0.1);
         cout<<"3. Methode 2opt"<<endl;
-        PauseFor(0.1);
+        PauseFor(0.2);
         cout<<"4. Afficher ROOT"<<endl;
-        PauseFor(0.1);
-        cout<<"5. Voir les temps"<<endl;
-        PauseFor(0.1);
+        PauseFor(0.2);
+        cout<<"5. RIEN"<<endl;
+        PauseFor(0.2);
         cout<<"6. Le bouton 6"<<endl;
         PauseFor(0.1);
         cout<<"0. Quitter"<<endl<<endl;
@@ -196,10 +137,25 @@ srand(seed);
                 t0=clock();
                 ////////
                 vector <int> ordre (n);
-                anagramme(ordre,n,P);
+                for(int i=0; i<n; i++)ordre[i]=i;
+                double lg;	double best;	vector <int> bestvect (n);		bestvect=ordre;    lgc(ordre,best,n,P);
+                
+                do{
+                   
+                    for(int i=0; i<n; i++){
+                        cout<< "->"<<ordre[i];
+                    }
+                    lgc(ordre,lg,n,P);
+                    if(lg<best){best=lg; bestvect=ordre;}
+                    cout<<"     distance : "<<lg <<endl;
 
+                }while (next_permutation(ordre.begin(),ordre.end()));
+                
+                cout << endl <<" Le meilleur chemin est : ";
+                for(int i=0; i<n; i++)cout<<bestvect[i]<<"->";
+                cout<<"avec une distance de : "<<best;
 
-
+                
                 ///////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
@@ -234,7 +190,51 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                dopt(n,P);
+            
+		vector <int> ordre (n);
+
+		ordre=randomsansrep (n);
+
+		double lg1;
+		double lg2;
+		lgc(ordre,lg1,n,P);
+
+		for (int i=0; i<1000;i++) {
+		vector <int> ordre2 (n);
+			ordre2=randomsansrep(n);
+			lgc(ordre2,lg2,n,P);
+			
+			if(lg2<lg1) 
+			{
+				ordre=ordre2;
+				lg1=lg2;
+			}
+		}
+
+		double minchange=0;
+		double change;
+		int save;
+
+		do {
+			minchange=0;
+			for( int i=0; i<n-2; i++) {
+				for(int j=i+2; j<n;j++){
+				
+						change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
+			
+					if(minchange > change) {
+						minchange=change;
+						save=ordre[j];
+						ordre[j]=ordre[i+1];
+						ordre[i+1]=save;
+		 				lgc(ordre, lg1, n,P);
+						cout<<"changement effectuer longeur de : "<<lg1<<endl;
+					}
+				}
+			}
+
+				}while (minchange<0);
+
 
                 ////////
                 t0=clock()-t0;
@@ -252,9 +252,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                //vector <int> ordre (n);
-                //anagramme(ordre,n,P);
-                //graph (P, ordre);
+               
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;

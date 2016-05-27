@@ -13,7 +13,10 @@ link_root= `root-config --libs`
 
 #ajouter les nom des fichier au fur et a mesure
 
-all: recuit_simule 2OPT
+%.o:%.cpp
+	${GPP} -c -o $@ -I `root-config --incdir`  $<
+
+all: recuit_simule #DLexp
 
 clean: 
 	rm -f -v *.o
@@ -23,13 +26,11 @@ PM.o : PM.cpp
 	${GPP} -c -o PM.o PM.cpp
 recuit_simule.o: recuit_simule.cpp 
 	${GPP} -c -o recuit_simule.o recuit_simule.cpp
-#2OPT: 2OPT.cpp
-#	#${GPP} -c -o 2OPT.o 2OPT.cpp
-
-%.o : %.cpp Makefile
-	${GPP}  —v Wall -c  -o $@ $<
+MC.o: MC.cpp
+	${GPP} -c -o MC.o MC.cpp
 
 # Edition des liens
-recuit_simule: recuit_simule.o PM.o #2OPT.o
-	${GPP} -o -v Voyageur_optimisé recuit_simule.o PM.o
-
+recuit_simule: recuit_simule.o PM.o MC.o
+	${GPP} -o Voyageur recuit_simule.o PM.o MC.o # `root-config --libs`
+#DLexp:DLexp.o
+	#${GPP} -o DLexp DLexp.o  `root-config --libs`
