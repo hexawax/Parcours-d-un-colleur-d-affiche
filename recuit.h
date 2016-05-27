@@ -12,5 +12,5 @@ vector <int> intervers (vector<int> ordre, const int n);
 double baissetemp(double T);
 void recuit(//a completer
 int n, double k,const int P[][2]);
-
+void methodecombine (int n, double k, const int P[][2]);
 #endif

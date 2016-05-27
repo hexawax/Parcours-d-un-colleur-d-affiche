@@ -6,9 +6,7 @@
 #include <string>
 #include <iomanip>
 #include <vector>
-//#include "graph.h"
 #include "recuit.h"
-#include "MC.h"
 #include <algorithm>
 
 using namespace std;
@@ -115,11 +113,11 @@ srand(seed);
         PauseFor(0.1);
         cout<<"3. Methode 2opt"<<endl;
         PauseFor(0.2);
-        cout<<"4. Afficher ROOT"<<endl;
+        cout<<"4. Methode combiné 2OPT et recuit"<<endl;
         PauseFor(0.2);
         cout<<"5. RIEN"<<endl;
         PauseFor(0.2);
-        cout<<"6. Le bouton 6"<<endl;
+        cout<<"6. Afficher le detail des points"<<endl;
         PauseFor(0.1);
         cout<<"0. Quitter"<<endl<<endl;
         PauseFor(0.1);
@@ -191,49 +189,49 @@ srand(seed);
                 t0=clock();
                 ////////
             
-		vector <int> ordre (n);
+                vector <int> ordre (n);
 
-		ordre=randomsansrep (n);
+                ordre=randomsansrep (n);
 
-		double lg1;
-		double lg2;
-		lgc(ordre,lg1,n,P);
+                double lg1;
+                double lg2;
+                lgc(ordre,lg1,n,P);
 
-		for (int i=0; i<1000;i++) {
-		vector <int> ordre2 (n);
-			ordre2=randomsansrep(n);
-			lgc(ordre2,lg2,n,P);
-			
-			if(lg2<lg1) 
-			{
-				ordre=ordre2;
-				lg1=lg2;
-			}
-		}
+                for (int i=0; i<1000;i++) {
+                vector <int> ordre2 (n);
+                    ordre2=randomsansrep(n);
+                    lgc(ordre2,lg2,n,P);
+                    
+                    if(lg2<lg1) 
+                    {
+                        ordre=ordre2;
+                        lg1=lg2;
+                    }
+                }
 
-		double minchange=0;
-		double change;
-		int save;
+                double minchange=0;
+                double change;
+                int save;
 
-		do {
-			minchange=0;
-			for( int i=0; i<n-2; i++) {
-				for(int j=i+2; j<n;j++){
-				
-						change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
-			
-					if(minchange > change) {
-						minchange=change;
-						save=ordre[j];
-						ordre[j]=ordre[i+1];
-						ordre[i+1]=save;
-		 				lgc(ordre, lg1, n,P);
-						cout<<"changement effectuer longeur de : "<<lg1<<endl;
-					}
-				}
-			}
+                do {
+                    minchange=0;
+                    for( int i=0; i<n-2; i++) {
+                        for(int j=i+2; j<n;j++){
+                        
+                                change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
+                    
+                            if(minchange > change) {
+                                minchange=change;
+                                save=ordre[j];
+                                ordre[j]=ordre[i+1];
+                                ordre[i+1]=save;
+                                lgc(ordre, lg1, n,P);
+                                cout<<"changement effectuer longeur de : "<<lg1<<endl;
+                            }
+                        }
+                    }
 
-				}while (minchange<0);
+                        }while (minchange<0);
 
 
                 ////////
@@ -247,12 +245,13 @@ srand(seed);
             }
                 break;
 
-            case 4 :                 cout<<"4. Afficher ROOT"<<endl;
+            case 4 :                 cout<<"4. Methode combiné 2OPT et recuit"<<endl;
             {
                 clock_t t0;
                 t0=clock();
                 ////////
-               
+                methodecombine (n,k,P);
+
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
@@ -264,7 +263,7 @@ srand(seed);
             }
                 break;
 
-            case 5 :                 cout<<"5. Voir les temps"<<endl;
+            case 5 :                 cout<<"Ce bouton ne fait rien "<<endl;
             {
                 clock_t t0;
                 t0=clock();
@@ -281,7 +280,7 @@ srand(seed);
             }
                 break;
 
-            case 6 :                cout<<"6. Le bouton 6"<<endl<<endl;
+            case 6 :                cout<<"6. Afficher le detail des points"<<endl<<endl;
             {
                 clock_t t0;
                 t0=clock();

@@ -167,3 +167,81 @@ cout<<"longeur : "<<lgc1<<endl;
 }
 
 
+
+
+
+void methodecombine (int n, double k, const int P[][2]
+)
+{   cout<<"RECUIT :"<<endl;
+    srand(time(0));
+    int iter=0;
+    double T=40;
+    double lgc1;
+    double lgc2;
+    int B=0;
+    vector <int> ordre (n);
+    ordre=randomsansrep(n);
+    vector <int> ordre2(n);
+    lgc(ordre, lgc1,n,P);
+    double proba;//pour que palier soit plus qurand que iter des le debut
+    do{
+        do {
+            ordre2=intervers(ordre,n);
+            lgc(ordre2, lgc2,n,P);
+            bool change=false;
+            if (lgc2<lgc1) change=true;
+            if(lgc1<lgc2){
+                proba=exp(-(lgc2-lgc1)/(k*T));//kT doit etre de l'ordre du delta lgc
+                if(proba0_1()<proba) change=true;
+            }
+            if (change)
+            {
+                ordre=ordre2;
+                lgc1=lgc2;
+                B=0;
+            }
+            else B++;
+            
+            iter++;
+            cout << lgc1 << " ";
+        }while (B<3);
+        cout << " fin palier T=" << T << endl;
+        B=0; T=baissetemp(T);
+    }while(T>0.1);
+    
+    cout<<endl<<"resultat : ";
+    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+    cout<<"longeur : "<<lgc1<<endl;
+    cout<<endl<<endl<<"///////////////////////////////////////////////////"<<endl<<endl;
+    ///////////////////////////////////////////////////recuit en haut et 2opt en bas
+    cout<<"2OPT :"<<endl;
+    double minchange=0;
+    double change;
+    int save;
+    do {
+        minchange=0;
+        for( int i=0; i<n-2; i++) {
+            for(int j=i+2; j<n;j++){
+                
+                change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
+                
+                if(minchange > change) {
+                    minchange=change;
+                    save=ordre[j];
+                    ordre[j]=ordre[i+1];
+                    ordre[i+1]=save;
+                    lgc(ordre, lgc1, n,P);
+                    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+                    cout<<"changement effectue est de longeur : "<<lgc1<<endl;
+                }
+            }
+        }
+        
+    }while (minchange<0);
+    
+    
+    cout<<endl<<endl<<"RESULTAT FINAL : ";
+    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+    cout<<"longeur : "<<lgc1<<endl;
+}
+

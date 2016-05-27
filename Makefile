@@ -26,11 +26,11 @@ PM.o : PM.cpp
 	${GPP} -c -o PM.o PM.cpp
 recuit_simule.o: recuit_simule.cpp 
 	${GPP} -c -o recuit_simule.o recuit_simule.cpp
-MC.o: MC.cpp
-	${GPP} -c -o MC.o MC.cpp
+#MC.o: MC.cpp
+	#${GPP} -c -o MC.o MC.cpp
 
 # Edition des liens
-recuit_simule: recuit_simule.o PM.o MC.o
-	${GPP} -o Voyageur recuit_simule.o PM.o MC.o # `root-config --libs`
+recuit_simule: recuit_simule.o PM.o
+	${GPP} -o Voyageur recuit_simule.o PM.o # `root-config --libs`
 #DLexp:DLexp.o
 	#${GPP} -o DLexp DLexp.o  `root-config --libs`
