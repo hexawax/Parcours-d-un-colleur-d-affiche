@@ -89,10 +89,10 @@ unsigned int seed=time(NULL);
 cout << "seed=" << seed << endl;
 srand(seed);
 
-    int limitept=50;//limite nb de point
+    int limitept=500;//limite nb de point
     int n;
-    cout<<endl<<"Entrez premierement le nombre de point (limite a "<<limitept<<") : ";
-    do{ cin>>n;}while (n>limitept||n<4);
+    cout<<endl<<"Entrez premierement le nombre de point (limite entre 5 et "<<limitept<<") : ";
+    do{ cin>>n;}while (n>limitept||n<5);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
     int P[n][2];
     for (int i=0; i<=n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
@@ -100,7 +100,10 @@ srand(seed);
         P[i][0]=bazinga();
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
-	int k=2;
+    
+    double nombrepos = (factorielle(n-1)/2);
+    
+	int k=2; //pour le recuit
 
     int menu;
     do
@@ -135,18 +138,22 @@ srand(seed);
                 ////////
                 vector <int> ordre (n);
                 for(int i=0; i<n; i++)ordre[i]=i;
-                double lg;	double best;	vector <int> bestvect (n);		bestvect=ordre;    lgc(ordre,best,n,P);
+                double lg;	double best;	vector <int> bestvect (n);		bestvect=ordre;    lgc(ordre,best,n,P); int iter=0;
                 
                 do{
-                   
+                    ++iter;
                     for(int i=0; i<n; i++){
                         cout<< "->"<<ordre[i];
                     }
                     lgc(ordre,lg,n,P);
                     if(lg<best){best=lg; bestvect=ordre;}
-                    cout<<"     distance : "<<lg <<endl;
-
-                }while (next_permutation(ordre.begin(),ordre.end()));
+                    cout<<"     distance : "<<lg;
+                    cout<<"             "<<(iter*100)/nombrepos<<"%"<<endl;
+                    if (iter>=nombrepos) {            //optimisation de la methode classique, permet de sortir de la boucle quand
+                        break;                       //toutes les possibilité de trajet circulaire sont etablie.
+                    }                                // les trajet qui suivent sont des repetitions car le trajet de notre colleur
+                                                     // est circulaire.
+                }while (next_permutation(ordre.begin(),ordre.end())); //POUR AVOIR TOUTES LES POSSIBILITÉES AVEC REPETITION POUR VERIFIER DESACTIVER LE BREAK !!!
                 
                 cout << endl <<" Le meilleur chemin est : ";
                 for(int i=0; i<n; i++)cout<<bestvect[i]<<"->";
@@ -187,7 +194,9 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-            
+                if (n<7) {
+                    cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point <=6 avec cette methode";
+                }
                 vector <int> ordre (n);
 
                 ordre=randomsansrep (n);
