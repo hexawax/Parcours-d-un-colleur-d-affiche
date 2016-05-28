@@ -1,4 +1,8 @@
-// Optimisation de la methode avec le recuit simulé
+/////////////////////////////////////////////////////////////////////////////////////////////////// 
+////////////////////////Optimisation de la methode avec le recuit simulé///////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 #include<iostream>
 #include <cmath> //sqrt
 #include <cstdlib> //rand
@@ -6,30 +10,7 @@
 #include <string>
 #include <vector> //NE PAS OUBLIER PARTOUT !!!!!!!!!!
 using namespace std;
-/*
-                         NOTES
- -penser au "const" et "&" si possible
- - fautil declerer matrice dand lgc ????
- 
-                        A FAIRE
-                                    -Mehtode ordre DONE A VERIFIER
-                                    -creer la matrice distance DONE IN THE PM.CPP
--un faffhichage du resultat
--→→➤☛☞➠➲➫➫➜➜UNE BONNE GENERATION DE h
- 
- 
-                        A FINIR
-- mthode lgc longeur du circuit
--methiode recuit
--ATTENTION copier coller
--distance les declaration sont peut etre fausse
--verifier lgc
--verifier le SI et else dans le recuit
-                        UTILE ?
- -methode unsurT pas tres utilie a voir
- -utiliser memset ?
- -matrice distance pas utilise donc suppression
-*/
+
 
 double proba0_1()//loi de proba entre 1 et 0 fonctionnelle
 {
@@ -37,31 +18,22 @@ double proba0_1()//loi de proba entre 1 et 0 fonctionnelle
 }
 
 
+
+
 double unsurT(double T) //fonction T(n)=1/K or k est parametres de la fonction
 {
     return 1/T;
 }
+
+
 
 double distance (const int P[][2],int i, int j)//distance entre 2 point d'un tableu double de points i = P1 & j =P2
 {
     return sqrt( (P[j][0]-P[i][0]) * (P[j][0]-P[i][0])
                 + (P[j][1]-P[i][1]) * (P[j][1]-P[i][1]) );
 }
-                
-/*
-void Matricedistance(int n, const double *Matricedistance [], const int* P[])//ne pas oublier de verifier la correspondance du P & CREER la matrice distance *
-{
-    //double * Matricedistance=new double [n][n]; //a voir si il y aen a vraiment besoin normalement non
-    
-    for (int i=0; i<n;i++)
-    {
-        for (int j=0; j<n; j++){
-            Matricedistance [i][j]=distance(P, i, j); //ajouter la methode de distance
-        }
-    }
-}
 
-*/
+
 
 
 void lgc(const vector <int> ordre, double& lg1,const int n,
@@ -80,29 +52,34 @@ void lgc(const vector <int> ordre, double& lg1,const int n,
 
 
 
-vector<int> randomsansrep (const int MAX) //COPIER COLLER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-{                                                                 //MIN toujours 1
+
+
+vector<int> randomsansrep (const int MAX) //fonction pour créer des points sans répétitions
+{                                 //MIN toujours 1
     vector <int> value(MAX);
     for (int i=0;i<MAX;i++)
     {
-        bool check; //variable to check or number is already used
-        int n; //variable to store the number in
+        bool check; //variable pour vérifier que le nombre n'est pas déja utiliser
+        int n;
         do
         {
             n=rand()%MAX;
-            //check or number is already used:
+            // vérifier que le nombre n'est pas déja utiliser
             check=true;
             for (int j=0;j<i;j++)
-                if (n == value[j]) //if number is already used
+                if (n == value[j]) //si déja utilisé
                 {
-                    check=false; //set check to false
-                    break; //no need to check the other elements of value[]
+                    check=false; //alors il est déclaré comme false
+                    break; //donc pas besoin de vérifier les autres valeurs
                 }
-        } while (!check); //loop until new, unique number is found
-        value[i]=n; //store the generated number in the array
+        } while (!check); //on boucle jusqu'a trouver un nombre unique
+        value[i]=n; //stocker le nombre générer dans le tableau
     }
     return value;
 }
+
+
+
 
 vector <int> intervers (vector<int> ordre, const int n)
 {
@@ -117,13 +94,16 @@ vector <int> intervers (vector<int> ordre, const int n)
 return ordre2;
 }
 
-double baissetemp(double T)
+
+
+double baissetemp(double T)//méthode qui doit être appeler pour baisser la temperature lors du recuit
 {return log(T);}
 
 
 
-void recuit(//a completer
-int n, double k, const int P[][2])
+
+
+void recuit(int n, double k, const int P[][2]) //méthode pour le calcul du recuit
 {
     srand(time(0));
     int iter=0;
@@ -170,7 +150,7 @@ cout<<"longeur : "<<lgc1<<endl;
 
 
 
-void methodecombine (int n, double k, const int P[][2]
+void methodecombine (int n, double k, const int P[][2]          //méthode alliant le recuit-simule et la méthode 2-opt
 )
 {   cout<<"RECUIT :"<<endl;
     srand(time(0));

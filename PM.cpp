@@ -1,3 +1,7 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////fichier principal du programme//////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 #include <iostream>
 #include <cmath> //sqrt
@@ -11,19 +15,26 @@
 
 using namespace std;
 
-//voir kes limites de l'algorytimle
+
 
 double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
 {
   return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
 }
 
-void PauseFor( double seconds) //fonction pour faire une pausen pendant X seconde
+
+
+
+void PauseFor( double seconds) //fonction pour faire une pause pendant X seconde
 {
     clock_t temp;                               ///
     temp = clock () + seconds * CLOCKS_PER_SEC ;/// ATTENTION COPIER COLLER
     while (clock() < temp) {}                   ///
 }
+
+
+
+
 
 double bazinga() //fct de point aleatoire
 {int signe =rand()%(1); //avoir un signe aleatoirement
@@ -32,27 +43,6 @@ double bazinga() //fct de point aleatoire
 }
 else return -rand()%(100);//valeur aleatoire du nombre
 }
-
-void anagramme(vector <int> ordre, const int n,const int P[][2])
-{
-    vector <int> save; double lgc2 ;double lgc1=10000000000;//grand nombre pour qu'il soit toujours desous la permiere doistance de la boucle
-    for (int k=0; k<n; k++)
-    { int i=1; int tempo=0;
-        while ((n-i)>0) {
-            ordre[n-i]=tempo;
-            ordre[n-i-1]=ordre[n-1];
-            ordre[n-i-1]=tempo;
-            i++;
-            lgc(ordre,lgc2,n,P);
-
-	    if(lgc2<lgc2){
-            save=ordre;
-                lgc1=lgc2;}
-
-        }
-    }
-}
-
 
 
 
@@ -89,6 +79,8 @@ unsigned int seed=time(NULL);
 cout << "seed=" << seed << endl;
 srand(seed);
 
+						//selection du nombre de points voulut
+
     int limitept=500;//limite nb de point
     int n;
     cout<<endl<<"Entrez premierement le nombre de point (limite entre 5 et "<<limitept<<") : ";
@@ -105,7 +97,11 @@ srand(seed);
     
 	int k=2; //pour le recuit
 
-    int menu;
+ 
+
+
+
+   int menu;  //on a ici un switch qui va permettre de choisir la méthode qui l'on souhaite ou voir les points créer
     do
     {
         cout<<endl<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
@@ -117,9 +113,7 @@ srand(seed);
         PauseFor(0.2);
         cout<<"4. Methode combiné 2OPT et recuit"<<endl;
         PauseFor(0.2);
-        cout<<"5. RIEN"<<endl;
-        PauseFor(0.2);
-        cout<<"6. Afficher le detail des points"<<endl;
+        cout<<"5. Afficher le detail des points"<<endl;
         PauseFor(0.1);
         cout<<"0. Quitter"<<endl<<endl;
         PauseFor(0.1);
@@ -129,7 +123,15 @@ srand(seed);
 
         switch(menu)                    /// NE PAS OUBLIER LES {} POUR NE PAS REDEFINIR LES CLOCKS T0
         {
+
+
             case 0 : break;
+
+
+
+
+
+
 
             case 1 :                 cout<<"1. Methode classique"<<endl;
             {
@@ -171,12 +173,17 @@ srand(seed);
             }
                 break;
 
+
+
+
+
+
             case 2 :                 cout<<"2. Methode du recuit simulé"<<endl;
             {
                 clock_t t0;
                 t0=clock();
                 ////////
-			recuit(n,k,P);
+			recuit(n,k,P);//appel de la méthode du recuit (via le header)
 
                 ////////
                 t0=clock()-t0;
@@ -188,6 +195,12 @@ srand(seed);
                 cout<<endl;
             }
                 break;
+
+
+
+
+
+		//choix de programmer la méthode 2-opt dans le main
 
             case 3 :                 cout<<"3. Methode 2opt"<<endl;
             {
@@ -253,12 +266,18 @@ srand(seed);
             }
                 break;
 
+
+
+
+
+
+
             case 4 :                 cout<<"4. Methode combiné 2OPT et recuit"<<endl;
             {
                 clock_t t0;
                 t0=clock();
                 ////////
-                methodecombine (n,k,P);
+                methodecombine (n,k,P);//cette méthode se trouve dans le fichier recuit_simule.cpp et est appelé via le header
 
                 ////////
                 t0=clock()-t0;
@@ -271,24 +290,15 @@ srand(seed);
             }
                 break;
 
-            case 5 :                 cout<<"Ce bouton ne fait rien "<<endl;
-            {
-                clock_t t0;
-                t0=clock();
-                ////////
 
-                ////////
-                t0=clock()-t0;
-                cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
 
-                cout<<endl<<"FIN du programme, retour au menu dans 2 s."<<endl<<endl;
-                PauseFor(2);
 
-                cout<<endl;
-            }
-                break;
 
-            case 6 :                cout<<"6. Afficher le detail des points"<<endl<<endl;
+
+
+
+
+            case 5 :                cout<<"5. Afficher le detail des points"<<endl<<endl;
             {
                 clock_t t0;
                 t0=clock();
