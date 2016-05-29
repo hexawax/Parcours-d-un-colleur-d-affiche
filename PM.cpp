@@ -17,7 +17,7 @@ using namespace std;
 
 
 
-double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
+long double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
 {
   return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
 }
@@ -93,7 +93,7 @@ srand(seed);
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
     
-    double nombrepos = (factorielle(n-1)/2);
+    long double nombrepos = (factorielle(n-1)/2);
     
 	int k=2; //pour le recuit
 
@@ -138,9 +138,18 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
+                
+                cout<<endl<<"La methode classique peut etre trés longue pour un nombre de possibilité superieur a 10 : il faudra environ "<<nombrepos*0.000015<<" secondes pour resoudre le probleme pour "<<n<<"possibilités. (approximation : un temps 1μs par possibilitée"<<endl;
+                int Choix=0;
+                PauseFor(0.5);
+                cout<<endl<<"Voulez vous continuer ? "<<endl<<"1. OUI"<<endl<<"0. NON";
+                do{ cout<<endl<<">";cin>>Choix;}while (Choix>1||Choix<0);
+                if (Choix==0) {
+                    break;
+                }
                 vector <int> ordre (n);
                 for(int i=0; i<n; i++)ordre[i]=i;
-                double lg;	double best;	vector <int> bestvect (n);		bestvect=ordre;    lgc(ordre,best,n,P); int iter=0;
+                double lg;	double best;	vector <int> bestvect (n);		bestvect=ordre;    lgc(ordre,best,n,P); long double iter=0;
                 
                 do{
                     ++iter;
