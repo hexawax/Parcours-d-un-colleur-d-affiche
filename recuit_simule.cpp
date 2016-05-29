@@ -136,7 +136,7 @@ void recuit(int n, double k, const int P[][2]) //méthode pour le calcul du recu
 
         iter++;
         cout << lgc1 << " ";
-       }while (B<3);
+       }while (B<10); ////////////////////////////a modifier pour tester -------------------ICICICICICICICICICI--______
        cout << " fin palier T=" << T << endl; 
       B=0; T=baissetemp(T);
     }while(T>0.1);
