@@ -262,10 +262,12 @@ srand(seed);
                             }
                         }
                     }
-
-                        }while (minchange<0);
-
-
+                    
+                }while (minchange<0);
+                cout << endl <<" Le meilleur chemin est : ";
+                double lgd; lgc(ordre,lgd,n,P);
+                for(int i=0; i<n; i++)cout<<ordre[i]<<"->";
+                cout<<"avec une distance de : "<<lgd;
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;
