@@ -139,11 +139,11 @@ srand(seed);
                 t0=clock();
                 ////////
                 
-                cout<<endl<<"La methode classique peut etre trés longue pour un nombre de possibilité superieur a 10 : il y a "<<nombrepos<<" possibilitées (dans les deux sens), il faudra environ "<<nombrepos*0.000015<<" secondes pour resoudre le probleme pour "<<n<<" possibilités. (approximation : un temps 1μs par possibilitée"<<endl;
+                cout<<endl<<"La methode classique peut etre trés longue pour un nombre de possibilité superieur a 10 , elle n'est pas optimisée : il y a "<<nombrepos<<" possibilitées (dans les deux sens), il faudra environ "<<nombrepos*0.000015<<" secondes pour resoudre le probleme pour "<<n<<" points. (approximation : un temps 1μs par possibilitée"<<endl;
                 int Choix=0;
                 PauseFor(0.5);
                 cout<<endl<<"Voulez vous continuer ? "<<endl<<"1. OUI"<<endl<<"0. NON";
-                do{ cout<<endl<<">";cin>>Choix;}while (Choix>1||Choix<0);
+                do{ cout<<endl<<endl<<">";cin>>Choix;}while (Choix>1||Choix<0);
                 if (Choix==0) {
                     break;
                 }
