@@ -146,6 +146,35 @@ for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
 cout<<"longeur : "<<lgc1<<endl;
 }
 
+vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
+{   double lgc1=0;
+    double minchange=0;
+    double change;
+    int save;
+    do {
+        minchange=0;
+        for( int i=0; i<n-2; i++) {
+            for(int j=i+2; j<n;j++){
+                
+                change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
+                
+                if(minchange > change) {
+                    minchange=change;
+                    save=ordre[j];
+                    ordre[j]=ordre[i+1];
+                    ordre[i+1]=save;
+                    lgc(ordre, lgc1, n,P);
+                    for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
+        
+                }
+            }
+        }
+        
+    }while (minchange<0);
+    
+    return ordre;
+    
+}
 
 
 
@@ -166,7 +195,7 @@ void methodecombine (int n, double k, const int P[][2]          //méthode allia
     double proba;//pour que palier soit plus qurand que iter des le debut
     do{
         do {
-            ordre2=intervers(ordre,n);
+            ordre2=doptcombine(ordre,n,P);
             lgc(ordre2, lgc2,n,P);
             bool change=false;
             if (lgc2<lgc1) change=true;
@@ -229,4 +258,3 @@ void methodecombine (int n, double k, const int P[][2]          //méthode allia
     for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
     cout<<"longeur : "<<lgc1<<endl;
 }
-

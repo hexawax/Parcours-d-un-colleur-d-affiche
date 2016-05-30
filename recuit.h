@@ -12,4 +12,5 @@ vector <int> intervers (vector<int> ordre, const int n);
 double baissetemp(double T);
 void recuit(int n, double k,const int P[][2]);
 void methodecombine (int n, double k, const int P[][2]);
+vector <int> doptcombine(vector <int> ordre,const int n,const int P[][2]);
 #endif
