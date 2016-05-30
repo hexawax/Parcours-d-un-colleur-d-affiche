@@ -93,7 +93,7 @@ srand(seed);
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
     
-    long double nombrepos = (factorielle(n-1)/2);
+    long double nombrepos = (factorielle(n-1));
     
 	double k=0.0000001; //pour le recuit
 
@@ -139,7 +139,7 @@ srand(seed);
                 t0=clock();
                 ////////
                 
-                cout<<endl<<"La methode classique peut etre trés longue pour un nombre de possibilité superieur a 10 : il faudra environ "<<nombrepos*0.000015<<" secondes pour resoudre le probleme pour "<<n<<" possibilités. (approximation : un temps 1μs par possibilitée"<<endl;
+                cout<<endl<<"La methode classique peut etre trés longue pour un nombre de possibilité superieur a 10 : il y a "<<nombrepos<<" possibilitées (dans les deux sens), il faudra environ "<<nombrepos*0.000015<<" secondes pour resoudre le probleme pour "<<n<<" possibilités. (approximation : un temps 1μs par possibilitée"<<endl;
                 int Choix=0;
                 PauseFor(0.5);
                 cout<<endl<<"Voulez vous continuer ? "<<endl<<"1. OUI"<<endl<<"0. NON";
@@ -162,7 +162,7 @@ srand(seed);
                     cout<<"             "<<(iter*100)/nombrepos<<"%"<<endl;
                     if (iter>=nombrepos) {            //optimisation de la methode classique, permet de sortir de la boucle quand
                         break;                       //toutes les possibilité de trajet circulaire sont etablie.
-                    }                                // les trajet qui suivent sont des repetitions car le trajet de notre colleur
+                                         }                                // les trajet qui suivent sont des repetitions car le trajet de notre colleur
                                                      // est circulaire.
                 }while (next_permutation(ordre.begin(),ordre.end())); //POUR AVOIR TOUTES LES POSSIBILITÉES AVEC REPETITION POUR VERIFIER DESACTIVER LE BREAK !!!
                 
