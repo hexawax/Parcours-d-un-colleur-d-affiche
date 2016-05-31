@@ -132,7 +132,7 @@ void recuit(int n, const int P[][2]) //méthode pour le calcul du recuit
 
         iter++;
         cout << lgc1 << " ";
-       }while (B<70); ////////////////////////////a modifier pour tester -------------------ICICICICICICICICICI--______
+       }while (B<70); ///
        cout << " fin palier T=" << T << endl; 
       B=0; T=0.99*(T); //on peut utiliser ici soit la loi
     }while(T>0.000000001);
@@ -148,7 +148,6 @@ vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
     double minchange=0;
     double change;
     int save;
-    do {
         minchange=0;
         for( int i=0; i<n-2; i++) {
             for(int j=i+2; j<n;j++){
@@ -166,8 +165,7 @@ vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
                 }
             }
         }
-        
-    }while (minchange<0);
+    
     
     return ordre;
     
@@ -192,8 +190,8 @@ void methodecombine (int n,const int P[][2]          //méthode alliant le recui
     double proba;//pour que palier soit plus qurand que iter des le debut
     do{
         do {
-            if (iter & 1){ordre2=intervers(ordre,n);}
-            else {ordre2=doptcombine(ordre,n,P);}
+            if (iter & 1){ordre2=doptcombine(ordre,n,P);}
+            else {ordre2=intervers(ordre,n);}
             lgc(ordre2, lgc2,n,P);
             bool change=false;
             if (lgc2<lgc1) change=true;
