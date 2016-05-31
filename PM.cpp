@@ -94,10 +94,7 @@ srand(seed);
     }
     
     long double nombrepos = (factorielle(n-1));
-    
-	double k=0.0000001; //pour le recuit
-
- 
+  
 
 
 
@@ -194,7 +191,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-			recuit(n,k,P);//appel de la méthode du recuit (via le header)
+			recuit(n,P);//appel de la méthode du recuit (via le header)
 
                 ////////
                 t0=clock()-t0;
@@ -290,7 +287,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                methodecombine (n,k,P);//cette méthode se trouve dans le fichier recuit_simule.cpp et est appelé via le header
+                methodecombine (n,P);//cette méthode se trouve dans le fichier recuit_simule.cpp et est appelé via le header
 
                 ////////
                 t0=clock()-t0;

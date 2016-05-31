@@ -20,11 +20,6 @@ double proba0_1()//loi de proba entre 1 et 0 fonctionnelle
 
 
 
-double unsurT(double T) //fonction T(n)=1/K or k est parametres de la fonction
-{
-    return 1/T;
-}
-
 
 
 double distance (const int P[][2],int i, int j)//distance entre 2 point d'un tableu double de points i = P1 & j =P2
@@ -96,18 +91,19 @@ return ordre2;
 
 
 
-double baissetemp(double T)//méthode qui doit être appeler pour baisser la temperature lors du recuit
+double baissetemp(double T)//méthode qui doit être appeler pour baisser la temperature lors du recuit mais elle est moins
+                            //efficace que la loi 0.99T
 {return log(T);}
 
 
 
 
 
-void recuit(int n, double k, const int P[][2]) //méthode pour le calcul du recuit
+void recuit(int n, const int P[][2]) //méthode pour le calcul du recuit
 {
-    srand(time(0));
+    srand(time(NULL));
     int iter=0;
-    double T=40;
+    double T=10;
     double lgc1;
     double lgc2;
     int B=0;
@@ -123,7 +119,7 @@ void recuit(int n, double k, const int P[][2]) //méthode pour le calcul du recu
             bool change=false;
             if (lgc2<lgc1) change=true;
             if(lgc1<lgc2){ 
-                   proba=exp(-(lgc2-lgc1)/(k*T));//kT doit etre de l'ordre du delta lgc
+                   proba=exp(-(lgc2-lgc1)/(T));//kT doit etre de l'ordre du delta lgc
                    if(proba0_1()<proba) change=true;
             }
             if (change)
@@ -136,10 +132,10 @@ void recuit(int n, double k, const int P[][2]) //méthode pour le calcul du recu
 
         iter++;
         cout << lgc1 << " ";
-       }while (B<10); ////////////////////////////a modifier pour tester -------------------ICICICICICICICICICI--______
+       }while (B<70); ////////////////////////////a modifier pour tester -------------------ICICICICICICICICICI--______
        cout << " fin palier T=" << T << endl; 
-      B=0; T=baissetemp(T);
-    }while(T>0.00001);
+      B=0; T=0.99*(T); //on peut utiliser ici soit la loi
+    }while(T>0.000000001);
 
 cout<<endl<<"resultat : ";
 for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
@@ -179,12 +175,12 @@ vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
 
 
 
-void methodecombine (int n, double k, const int P[][2]          //méthode alliant le recuit-simule et la méthode 2-opt
+void methodecombine (int n,const int P[][2]          //méthode alliant le recuit-simule et la méthode 2-opt
 )
 {   cout<<"RECUIT :"<<endl;
     srand(time(0));
     int iter=0;
-    double T=40;
+    double T=10;
     double lgc1;
     double lgc2;
     int B=0;
@@ -200,7 +196,7 @@ void methodecombine (int n, double k, const int P[][2]          //méthode allia
             bool change=false;
             if (lgc2<lgc1) change=true;
             if(lgc1<lgc2){
-                proba=exp(-(lgc2-lgc1)/(k*T));//kT doit etre de l'ordre du delta lgc
+                proba=exp(-(lgc2-lgc1)/(T));//kT doit etre de l'ordre du delta lgc
                 if(proba0_1()<proba) change=true;
             }
             if (change)
@@ -213,10 +209,10 @@ void methodecombine (int n, double k, const int P[][2]          //méthode allia
             
             iter++;
             cout << lgc1 << " ";
-        }while (B<3);
+        }while (B<70);
         cout << " fin palier T=" << T << endl;
-        B=0; T=baissetemp(T);
-    }while(T>0.1);
+        B=0; T=0.99*(T);
+    }while(T>0.00000001);
     vector <int> recuit (n);
     recuit=ordre;
     cout<<endl<<"resultat : ";
