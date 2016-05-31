@@ -77,7 +77,7 @@ intro();
 unsigned int seed=time(NULL);
 
 cout << "seed=" << seed << endl; //pour pouvoir avoir toujours les memes points modifer la seed
-srand(seed);
+srand(1464714567);
 
     
     
@@ -108,7 +108,7 @@ srand(seed);
         PauseFor(0.1);
         cout<<"2. Methode du recuit simulé"<<endl;
         PauseFor(0.1);
-        cout<<"3. Methode 2opt (n'est pas optimisé pour de trop gros chemin)"<<endl;
+        cout<<"3. Methode 2opt (voir notes)"<<endl;
         PauseFor(0.2);
         cout<<"4. Methode combiné 2OPT et recuit"<<endl;
         PauseFor(0.2);
@@ -213,10 +213,11 @@ srand(seed);
 
                             //choix de programmer la méthode 2-opt dans le main cette methode eleve les croisement, mais tend pas vers le chemin le plus cours. cette methode demande baucoup de calcul tout de meme
 
-            case 3 :                 cout<<"3. Methode 2opt"<<endl;if (n<7|| n>15) {
-                cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point < 6 avec cette methode : a besoin d'au moins 6 points et n'est pas tres efficace pour un nombre de possibilité trop elelvé n >> 20 la demande de memoire peut etre trop grosse et dans certain cas entrainer une erreur de \"segmentation 11\""<<endl;
-            } PauseFor(5);
+            case 3 :                 cout<<"3. Methode 2opt"<<endl;
             {
+                
+                    cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point < 6 avec cette methode : a besoin d'au moins 6 points aussi la methode n'est pas tres efficace pour un nombre de possibilité trop elelvé n >> 20 la demande de memoire peut etre trop grosse"<<endl;
+                PauseFor(5);
                 clock_t t0;
                 t0=clock();
                 
@@ -248,8 +249,8 @@ srand(seed);
                 unsigned int iter=0;
                 do {                                //debut de l'amelioration
                     minchange=0;
-                    for( int i=0; i<n-2; i++) {
-                        for(int j=i+2; j<n;j++){
+                    for( int i=0; i<n-3; i++) {
+                        for(int j=i+2; j<n-1;j++){
                                                     //calcul de la longeur des cotee et des diagonales, si il a un croisement alors change sera negatif, car les diagonales sont toujours plus
                                                     //longue que les coté (dans notre espace plan) le chemin n'est donc pas optimal et il faut echanger l'ordre.
                                 change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));

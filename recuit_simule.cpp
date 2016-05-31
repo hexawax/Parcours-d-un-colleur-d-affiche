@@ -150,8 +150,8 @@ vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2]) //met
     int save;
         minchange=0;
     
-        for( int i=0; i<n-2; i++) {
-            for(int j=i+2; j<n;j++){
+        for( int i=0; i<n-3; i++) {
+            for(int j=i+2; j<n-1;j++){
                 
                 change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
                 
@@ -219,7 +219,7 @@ void methodecombine (int n,const int P[][2]          //méthode alliant le recui
         }while (B<70);
         cout << " fin palier T=" << T << endl;
         B=0; T=0.99*(T);
-    }while(T>0.00000001);
+    }while(T>0.000000001);
     cout<<endl<<"resultat : ";
     for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
     cout<<"longeur : "<<lgc1<<endl;
