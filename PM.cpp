@@ -7,17 +7,16 @@
 #include <cmath> //sqrt
 #include <cstdlib> //rand
 #include <ctime> //intialisatn de rand
-#include <string>
 #include <iomanip>
 #include <vector>
 #include "recuit.h"
-#include <algorithm>
+#include <algorithm> //pour la methode classique
 
 using namespace std;
 
 
 
-long double factorielle(int n)//fct factoriel pour calculer le nb de possibilité
+long double factorielle(int n)//fct factoriel utile pour calculer le nb de possibilité
 {
   return (n ==1||n== 0) ? 1 :factorielle(n - 1) * n;
 }
@@ -27,19 +26,19 @@ long double factorielle(int n)//fct factoriel pour calculer le nb de possibilit�
 
 void PauseFor( double seconds) //fonction pour faire une pause pendant X seconde
 {
-    clock_t temp;                               ///
-    temp = clock () + seconds * CLOCKS_PER_SEC ;/// ATTENTION COPIER COLLER
-    while (clock() < temp) {}                   ///
+    clock_t temp;
+    temp = clock () + seconds * CLOCKS_PER_SEC ;
+    while (clock() < temp) {}
 }
 
 
 
 
 
-double bazinga() //fct de point aleatoire
+double bazinga() //fct creation des points aleatoire
 {int signe =rand()%(1); //avoir un signe aleatoirement
   if (signe==0){
-  return rand()%(100); //valur aleatoire du nombre entre 0 et 100
+  return rand()%(100); //valeur aleatoire du nombre entre 0 et 100
 }
 else return -rand()%(100);//valeur aleatoire du nombre
 }
@@ -74,11 +73,14 @@ void intro (){
 int main(int argc, char **argv)
 {
 intro();
+    
 unsigned int seed=time(NULL);
 
-cout << "seed=" << seed << endl;
+cout << "seed=" << seed << endl; //pour pouvoir avoir toujours les memes points modifer la seed
 srand(seed);
 
+    
+    
 						//selection du nombre de points voulut
 
     int limitept=500;//limite nb de point
@@ -87,13 +89,13 @@ srand(seed);
     do{ cin>>n;}while (n>limitept||n<5);
     cout<<endl<<"la position des points est genere aleatoirement entre -100 et 100"<<endl;
     int P[n][2];
-    for (int i=0; i<=n; i++)// je sais plus si c'est < ou <= pour faire n case de du tabeau
+    for (int i=0; i<=n; i++)
     {
         P[i][0]=bazinga();
         P[i][1]=bazinga();//positionnement aleatoire des points dans le plan
     }
     
-    long double nombrepos = (factorielle(n-1));
+    long double nombrepos = (factorielle(n-1)); //calcul du double du nombre de possibilitée (dans les 2 sens)
   
 
 
@@ -122,7 +124,7 @@ srand(seed);
         {
 
 
-            case 0 : break;
+            case 0 : break; //sortir du programe
 
 
 
@@ -132,7 +134,7 @@ srand(seed);
 
             case 1 :                 cout<<"1. Methode classique"<<endl;
             {
-                clock_t t0;
+                clock_t t0;  //chronometre sur chaque switch
                 t0=clock();
                 ////////
 
@@ -150,21 +152,22 @@ srand(seed);
                 for(int i=0; i<n; i++)ordre[i]=i;  //initialisation du premier chemin
                 double lg;	double best;	vector <int> bestvect (n);		bestvect=ordre;    lgc(ordre,best,n,P); long double iter=0; //calcul du premier chemin
                 
-                do{
-                    ++iter;
-                    for(int i=0; i<n; i++){
-                        cout<< "->"<<ordre[i];
-                    }
-                    lgc(ordre,lg,n,P);
-                    if(lg<best){best=lg; bestvect=ordre;}
-                    cout<<"     distance : "<<lg;
-                    cout<<"             "<<(iter*100)/nombrepos<<"%"<<endl;
-                    if (iter>=nombrepos) {            //optimisation de la methode classique, permet de sortir de la boucle quand
-                        break;                       //toutes les possibilité de trajet circulaire sont etablie.
-                                         }                                // les trajet qui suivent sont des repetitions car le trajet de notre colleur
-                                                     // est circulaire.
-                }while (next_permutation(ordre.begin(),ordre.end())); //POUR AVOIR TOUTES LES POSSIBILITÉES AVEC REPETITION POUR VERIFIER DESACTIVER LE BREAK !!!
-                
+                    do{                                         //methode classique
+                        ++iter;
+                        for(int i=0; i<n; i++){
+                            cout<< "->"<<ordre[i];
+                        }
+                        lgc(ordre,lg,n,P);
+                        if(lg<best){best=lg; bestvect=ordre;}
+                        cout<<"     distance : "<<lg;
+                        cout<<"             "<<(iter*100)/nombrepos<<"%"<<endl;
+                        if (iter>=nombrepos) {                              //optimisation de la methode classique, permet de sortir de la boucle quand
+                            break;                                              //toutes les possibilité de trajet circulaire sont etablie.
+                                             }                                // les trajet qui suivent sont des repetitions car le trajet de notre colleur
+                                                                                        // est circulaire. avec cette methode on calcul les trajet possibe des les deux sens de parcours.
+                        
+                    }while (next_permutation(ordre.begin(),ordre.end())); //POUR AVOIR TOUTES LES POSSIBILITÉES AVEC REPETITION POUR VERIFIER DESACTIVER LE BREAK !!!
+                    
                 cout << endl <<" Le meilleur chemin est : ";
                 for(int i=0; i<n; i++)cout<<bestvect[i]<<"->";
                 cout<<"avec une distance de : "<<best;
@@ -208,11 +211,11 @@ srand(seed);
 
 
 
-		//choix de programmer la méthode 2-opt dans le main
+                            //choix de programmer la méthode 2-opt dans le main cette methode eleve les croisement, mais tend pas vers le chemin le plus cours. cette methode demande baucoup de calcul tout de meme
 
             case 3 :                 cout<<"3. Methode 2opt"<<endl;if (n<7|| n>15) {
-                cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point <= 6 avec cette methode : a besoin d'au moins 6 points et n'est pas tres efficace pour un nombre de possibilité trop elelvé n >> 20 la demande de memoire peut etre trop grosse. "<<endl;
-            } PauseFor(2);
+                cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point < 6 avec cette methode : a besoin d'au moins 6 points et n'est pas tres efficace pour un nombre de possibilité trop elelvé n >> 20 la demande de memoire peut etre trop grosse et dans certain cas entrainer une erreur de \"segmentation 11\""<<endl;
+            } PauseFor(5);
             {
                 clock_t t0;
                 t0=clock();
@@ -247,8 +250,8 @@ srand(seed);
                     minchange=0;
                     for( int i=0; i<n-2; i++) {
                         for(int j=i+2; j<n;j++){
-                                                    //calcul de la longeur des cotee et des diagonales, si il a un croisement alors change sera negatif car les diagonales sont toujours plus
-                                                    //longue que les coté (dans notre espace plan) le chemin n'est donc pas optimal.
+                                                    //calcul de la longeur des cotee et des diagonales, si il a un croisement alors change sera negatif, car les diagonales sont toujours plus
+                                                    //longue que les coté (dans notre espace plan) le chemin n'est donc pas optimal et il faut echanger l'ordre.
                                 change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
                             
                             if(minchange > change) { // si il ya un croisement, on procede a l'échange pour demeler le chemin.
@@ -293,7 +296,7 @@ srand(seed);
                 clock_t t0;
                 t0=clock();
                 ////////
-                methodecombine (n,P);//cette méthode se trouve dans le fichier recuit_simule.cpp et est appelé via le header
+                methodecombine (n,P);//cette méthode se trouve dans le fichier recuit_simule.cpp et est appelé via le header elle combine les deux methode precedente.
 
                 ////////
                 t0=clock()-t0;
@@ -320,7 +323,7 @@ srand(seed);
                 t0=clock();
                 ////////
 
-                    for(int i =0; i<n ; i++)//verification des valeurs des points
+                    for(int i =0; i<n ; i++)//pour le verification des valeurs des points
                     { cout<<"Point "<<i<<endl;
                         cout<<P[i][1]<<endl;
                         cout<<P[i][2]<<endl;
