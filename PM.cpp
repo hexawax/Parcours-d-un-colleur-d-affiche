@@ -106,7 +106,7 @@ srand(seed);
         PauseFor(0.1);
         cout<<"2. Methode du recuit simulé"<<endl;
         PauseFor(0.1);
-        cout<<"3. Methode 2opt"<<endl;
+        cout<<"3. Methode 2opt (n'est pas optimisé pour de trop gros chemin)"<<endl;
         PauseFor(0.2);
         cout<<"4. Methode combiné 2OPT et recuit"<<endl;
         PauseFor(0.2);
@@ -210,23 +210,24 @@ srand(seed);
 
 		//choix de programmer la méthode 2-opt dans le main
 
-            case 3 :                 cout<<"3. Methode 2opt"<<endl;
+            case 3 :                 cout<<"3. Methode 2opt"<<endl;if (n<7|| n>15) {
+                cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point <= 6 avec cette methode : a besoin d'au moins 6 points et n'est pas tres efficace pour un nombre de possibilité trop elelvé n >> 20 la demande de memoire peut etre trop grosse. "<<endl;
+            } PauseFor(2);
             {
                 clock_t t0;
                 t0=clock();
+                
                 ////////
-                if (n<7) {
-                    cout<<endl<<"/!\\ le resultat n'est pas garantie pour un nombre de point <=6 avec cette methode";
-                }
+                {
+                
                 vector <int> ordre (n);
-
                 ordre=randomsansrep (n);
 
                 double lg1;
                 double lg2;
-                lgc(ordre,lg1,n,P);
+                lgc(ordre,lg1,n,P); //calcul d'une premiere distance
 
-                for (int i=0; i<1000;i++) {
+                for (int i=0; i<10000;i++) { //boucle pour avoir un chemin plus performant a ameliorer et ne pas tomber sur un minimum local, calcul de 10000 chemin et le plus cours est retenue
                 vector <int> ordre2 (n);
                     ordre2=randomsansrep(n);
                     lgc(ordre2,lg2,n,P);
@@ -236,35 +237,40 @@ srand(seed);
                         ordre=ordre2;
                         lg1=lg2;
                     }
-                }
+                                          }
 
                 double minchange=0;
                 double change;
                 int save;
-
-                do {
+                unsigned int iter=0;
+                do {                                //debut de l'amelioration
                     minchange=0;
                     for( int i=0; i<n-2; i++) {
                         for(int j=i+2; j<n;j++){
-                        
+                                                    //calcul de la longeur des cotee et des diagonales, si il a un croisement alors change sera negatif car les diagonales sont toujours plus
+                                                    //longue que les coté (dans notre espace plan) le chemin n'est donc pas optimal.
                                 change= (distance (P,ordre[i],ordre[j]) + distance (P,ordre[i+1],ordre[j+1]) - distance (P,ordre[i],ordre [i+1]) -distance (P,ordre[j], ordre[j+1]));
-                    
-                            if(minchange > change) {
+                            
+                            if(minchange > change) { // si il ya un croisement, on procede a l'échange pour demeler le chemin.
                                 minchange=change;
                                 save=ordre[j];
                                 ordre[j]=ordre[i+1];
                                 ordre[i+1]=save;
                                 lgc(ordre, lg1, n,P);
-                                cout<<"changement effectuer longeur de : "<<lg1<<endl;
+                                cout<<"changement effectuer longeur de : "<<lg1<<"   "<<iter<<endl;
                             }
                         }
                     }
+                    iter++;
+                    if(iter>50000){break; cout<<"le programe est bloqué dans une boucle de solution"<<endl;}  //condition de sortie d'urgence en cas de prise dans une boucle trop longue
                     
-                }while (minchange<0);
+                }while (minchange<0); // a faire jusquace quil n'y a plus de croisement detecté.
+                    
                 cout << endl <<" Le meilleur chemin est : ";
                 double lgd; lgc(ordre,lgd,n,P);
                 for(int i=0; i<n; i++)cout<<ordre[i]<<"->";
                 cout<<"avec une distance de : "<<lgd;
+                }
                 ////////
                 t0=clock()-t0;
                 cout<<endl<<endl<<"TEMPS D'EXECUTION : "<<((double)t0)/(CLOCKS_PER_SEC)<<" s"<<endl;

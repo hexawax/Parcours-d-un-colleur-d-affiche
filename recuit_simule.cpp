@@ -142,6 +142,7 @@ for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
 cout<<"longeur : "<<lgc1<<endl;
 }
 
+
 vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
 {   double lgc1=0;
     double minchange=0;
@@ -178,7 +179,7 @@ vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
 void methodecombine (int n,const int P[][2]          //méthode alliant le recuit-simule et la méthode 2-opt
 )
 {   cout<<"RECUIT :"<<endl;
-    srand(time(0));
+    srand(time(NULL));
     int iter=0;
     double T=10;
     double lgc1;
@@ -191,7 +192,8 @@ void methodecombine (int n,const int P[][2]          //méthode alliant le recui
     double proba;//pour que palier soit plus qurand que iter des le debut
     do{
         do {
-            ordre2=doptcombine(ordre,n,P);
+            if (iter & 1){ordre2=intervers(ordre,n);}
+            else {ordre2=doptcombine(ordre,n,P);}
             lgc(ordre2, lgc2,n,P);
             bool change=false;
             if (lgc2<lgc1) change=true;
@@ -213,14 +215,12 @@ void methodecombine (int n,const int P[][2]          //méthode alliant le recui
         cout << " fin palier T=" << T << endl;
         B=0; T=0.99*(T);
     }while(T>0.00000001);
-    vector <int> recuit (n);
-    recuit=ordre;
     cout<<endl<<"resultat : ";
     for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
     cout<<"longeur : "<<lgc1<<endl;
     cout<<endl<<endl<<"///////////////////////////////////////////////////"<<endl<<endl;
     ///////////////////////////////////////////////////recuit en haut et 2opt en bas
-    cout<<"2OPT :"<<endl;
+    /*cout<<"2OPT :"<<endl;
     double minchange=0;
     double change;
     int save;
@@ -249,7 +249,7 @@ void methodecombine (int n,const int P[][2]          //méthode alliant le recui
     if (lgc1>lgc2) {
         ordre=recuit;
     }
-    
+    */
     cout<<endl<<endl<<"RESULTAT FINAL : ";
     for (int i=0; i<n; i++) cout << ordre[i] << "->"; cout << endl;
     cout<<"longeur : "<<lgc1<<endl;
