@@ -24,13 +24,13 @@ double proba0_1()//loi de proba entre 1 et 0 fonctionnelle
 double distance (const int P[][2],int i, int j)//distance entre 2 point d'un tableu double de points : i = Point 1 & j =Point 2
 {
     return sqrt( (P[j][0]-P[i][0]) * (P[j][0]-P[i][0])
-                + (P[j][1]-P[i][1]) * (P[j][1]-P[i][1]) ); //retourne le distance
+                + (P[j][1]-P[i][1]) * (P[j][1]-P[i][1]) ); //retourne la distance
 }
 
 
 
 
-void lgc(const vector <int> ordre, double& lg1,const int n, //methode calcul la distance totale du parcours dans un double
+void lgc(const vector <int> ordre, double& lg1,const int n, //methode de calcul de la distance totale du parcours dans un double
 						 const int P[][2] )
 {
     lg1=0;
@@ -48,7 +48,7 @@ void lgc(const vector <int> ordre, double& lg1,const int n, //methode calcul la 
 
 
 
-vector<int> randomsansrep (const int MAX){ //fonction pour créer un ordre de point sans répétitions et aleatoire
+vector<int> randomsansrep (const int MAX){ //fonction pour créer un ordre de point sans répétitions et aléatoire
     vector <int> value(MAX);
     for (int i=0;i<MAX;i++)
     {
@@ -74,7 +74,7 @@ vector<int> randomsansrep (const int MAX){ //fonction pour créer un ordre de po
 
 
 
-vector <int> intervers (vector<int> ordre, const int n) //methode pour trouver un chemin voisin, proche d'un ordre
+vector <int> intervers (vector<int> ordre, const int n) //méthode pour trouver un chemin voisin, proche d'un ordre
 {
 	vector <int> ordre2 (n);
 	int all2=0;
@@ -119,7 +119,7 @@ void recuit(int n, const int P[][2]) //méthode principale pour le calcul du rec
             if(lgc1<lgc2){ 
                    proba=exp(-(lgc2-lgc1)/(T));//on exprime l'energie du systeme et sa probabilitée
                    if(proba0_1()<proba) change=true; //meme si la nouvelle longeur est plus longue on accepete le changement enfonction de proba
-                        }                             // c'est la force du recuit ce qui permet de passer les minimums locaux
+                        }                             // c'est la force du recuit, ce qui permet de passer les minimums locaux
                     if (change)
                        {
                        ordre=ordre2;
@@ -143,7 +143,10 @@ cout<<"longeur : "<<lgc1<<endl;
 
 
 
-vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2]) //methode light de 2opt pour la mehtode combiné
+
+
+
+vector <int> doptcombine(vector <int> ordre, const int n,const int P[][2])
 {   double lgc1=0;
     double minchange=0;
     double change;
@@ -187,9 +190,9 @@ void methodecombine (int n,const int P[][2]          //méthode alliant le recui
     vector <int> ordre (n);             //la difference est l'utilisation de 2opt pour le calcul du nouvelle ordre
     ordre=randomsansrep(n);
     vector <int> ordre2(n);
-    lgc(ordre, lgc1,n,P);               // nous avons remarque que si nous utilision 2opt periodiquement et pas a chaque fois cela accelerai la methode sans trop modifier le resultat
+    lgc(ordre, lgc1,n,P);               // nous avons remarque que si nous utilision 2opt periodiquement et pas a chaque fois cela accelerais la methode sans trop modifier le resultat
     double proba;
-    do{                                 // Pour de tres quand nombre de point, 2 opt est lent. contre cela nous avons utilisé une vertion light de 2opt qui fais les calculs une seule fois
+    do{                                 // Pour de tres quand nombre de point, 2 opt est lent. contre cela nous avons utilisé une version light de 2opt qui fais les calculs une seule fois
         do {
                                         // et nous avons decider d'alternet entre 2opt pour supprimer des croisement et l'intervertion pour trouver de meilleur chemin.
             

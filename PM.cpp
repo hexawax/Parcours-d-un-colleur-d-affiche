@@ -100,7 +100,7 @@ srand(1464714567);
 
 
 
-   int menu;  //on a ici un switch qui va permettre de choisir la méthode qui l'on souhaite ou voir les points créer
+   int menu;  //on a ici un switch qui va permettre de choisir la méthode qui l'on souhaite ou voir les points crée
     do
     {
         cout<<endl<<endl<<" ----------------------- MENU -----------------------"<<endl<<endl;
@@ -211,7 +211,7 @@ srand(1464714567);
 
 
 
-                            //choix de programmer la méthode 2-opt dans le main cette methode eleve les croisement, mais tend pas vers le chemin le plus cours. cette methode demande baucoup de calcul tout de meme
+                            //choix de programmer la méthode 2-opt dans le main cette methode enlève les croisement, mais tend pas vers le chemin le plus court. cette methode demande beaucoup de calcul tout de même
 
             case 3 :                 cout<<"3. Methode 2opt"<<endl;
             {
@@ -229,9 +229,9 @@ srand(1464714567);
 
                 double lg1;
                 double lg2;
-                lgc(ordre,lg1,n,P); //calcul d'une premiere distance
+                lgc(ordre,lg1,n,P); //calcul d'une première distance
 
-                for (int i=0; i<10000;i++) { //boucle pour avoir un chemin plus performant a ameliorer et ne pas tomber sur un minimum local, calcul de 10000 chemin et le plus cours est retenue
+                for (int i=0; i<10000;i++) { //boucle pour avoir un chemin plus performant à ameliorer et ne pas tomber sur un minimum local, calcul de 10000 chemin et le plus cours est retenue
                 vector <int> ordre2 (n);
                     ordre2=randomsansrep(n);
                     lgc(ordre2,lg2,n,P);
@@ -268,7 +268,7 @@ srand(1464714567);
                     iter++;
                     if(iter>50000){break; cout<<"le programe est bloqué dans une boucle de solution"<<endl;}  //condition de sortie d'urgence en cas de prise dans une boucle trop longue
                     
-                }while (minchange<0); // a faire jusquace quil n'y a plus de croisement detecté.
+                }while (minchange<0); // a faire jusqu'a ce qu'il n'y a plus de croisement detecté.
                     
                 cout << endl <<" Le meilleur chemin est : ";
                 double lgd; lgc(ordre,lgd,n,P);
