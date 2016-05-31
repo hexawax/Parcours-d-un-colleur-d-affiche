@@ -77,7 +77,7 @@ intro();
 unsigned int seed=time(NULL);
 
 cout << "seed=" << seed << endl; //pour pouvoir avoir toujours les memes points modifer la seed
-srand(1464714567);
+srand(seed);
 
     
     
